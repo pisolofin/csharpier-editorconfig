@@ -2,7 +2,7 @@
   <Import Project="../../Nuget/Build.props" />
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <PackageId>CSharpier</PackageId>
+    <PackageId>CSharpierConfig</PackageId>
     <AssemblyName>dotnet-csharpier-config</AssemblyName>
     <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <PackAsTool>true</PackAsTool>
