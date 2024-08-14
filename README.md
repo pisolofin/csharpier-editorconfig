@@ -1,7 +1,7 @@
 
 # csharpier-config
 
-This is as non opinionated version of [csharpier](https://github.com/belav/csharpier) tool created to add EditorConfig file style guide, allowing users to define and apply custom styling options.
+This is as non opinionated version of [csharpier](https://github.com/belav/csharpier) version 0.28.1 tool created to add EditorConfig file style guide, allowing users to define and apply custom styling options.
 
 I started implementing these options in a separate branch called [feature/brackets](https://github.com/pisolofin/csharpier-editorconfig/tree/feature/brackets).
 
@@ -14,3 +14,21 @@ All documentation you find about `CSharpier` is also valid for `CSharpier-Config
 
 - `dotnet csharpier` -> `dotnet csharpier-config`
 - `dotnet-csharpier` -> `dotnet-csharpier-config`
+
+**New feature**
+
+- Support to all [C# formatting options](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/csharp-formatting-options) into `.editorconfig` file
+
+```csharp
+#  CSharp formatting rules:
+[*.cs]
+csharp_new_line_before_open_brace = methods, properties, control_blocks, types
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_members_in_anonymous_types = true
+csharp_new_line_between_query_expression_clauses = true
+```
+
+For more information, please refer to the [documentation](/docs/Configuration.md)
