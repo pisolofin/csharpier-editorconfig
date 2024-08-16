@@ -25,9 +25,10 @@ public static class CodeFormatter
             {
                 Width = options.Width,
                 UseTabs = options.IndentStyle == IndentStyle.Tabs,
-                TabWidth = options.IndentSize,
+                IndentSize = options.IndentSize,
                 EndOfLine = options.EndOfLine,
                 IncludeGenerated = options.IncludeGenerated,
+                Formatter = "csharp",
                 NewLineBeforeOpenBrace = options.NewLineBeforeOpenBrace,
                 NewLineBeforeElse = options.NewLineBeforeElse,
                 NewLineBeforeCatch = options.NewLineBeforeCatch,
@@ -59,8 +60,9 @@ public static class CodeFormatter
             {
                 Width = options.Width,
                 UseTabs = options.IndentStyle == IndentStyle.Tabs,
-                TabWidth = options.IndentSize,
-                EndOfLine = options.EndOfLine
+                IndentSize = options.IndentSize,
+                EndOfLine = options.EndOfLine,
+                Formatter = "csharp"
             },
             SourceCodeKind.Regular,
             cancellationToken
