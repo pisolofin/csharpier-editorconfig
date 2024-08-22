@@ -682,7 +682,7 @@ class ClassName
     [TestCase(".csharpierrc")]
     [TestCase(".csharpierrc.json")]
     [TestCase(".csharpierrc.yaml")]
-    public void Empty_Config_Files_Should_Log_Warning()
+    public void Empty_Config_Files_Should_Log_Warning(string configFileName)
     {
         var context = new TestContext();
         var configPath = context.WhenAFileExists(".csharpierrc", "");
