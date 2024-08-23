@@ -7,7 +7,7 @@ namespace CSharpier;
 public enum BraceNewLine
 {
     None = 0,
-	Accessors = 1 << 0,
+    Accessors = 1 << 0,
     AnonymousMethods = 1 << 1,
     AnonymousTypes = 1 << 2,
     ControlBlocks = 1 << 3,
@@ -20,5 +20,5 @@ public enum BraceNewLine
     Properties = 1 << 10,
     Types = 1 << 11,
 
-    All = 0xFFFF
+    All = 0xFFFF,
 }

@@ -41,19 +41,44 @@ internal static class Block
             node.Parent switch
             {
                 ParenthesizedLambdaExpressionSyntax or BlockSyntax => Doc.Null,
-                IfStatementSyntax or ElseClauseSyntax or ForStatementSyntax or ForEachStatementSyntax or WhileStatementSyntax or TryStatementSyntax or CatchClauseSyntax or FinallyClauseSyntax =>
-                    context.NewLineBeforeOpenBrace.HasFlag(BraceNewLine.ControlBlocks) ? Doc.Line : " ",
-                BaseMethodDeclarationSyntax =>
-                    context.NewLineBeforeOpenBrace.HasFlag(BraceNewLine.Methods) ? Doc.Line : " ",
-                LocalFunctionStatementSyntax =>
-                    context.NewLineBeforeOpenBrace.HasFlag(BraceNewLine.LocalFunctions) ? Doc.Line : " ",
-                AccessorDeclarationSyntax =>
-                    context.NewLineBeforeOpenBrace.HasFlag(BraceNewLine.Accessors) ? Doc.Line : " ",
-                AnonymousMethodExpressionSyntax =>
-                    context.NewLineBeforeOpenBrace.HasFlag(BraceNewLine.AnonymousMethods) ? Doc.Line : " ",
-                SimpleLambdaExpressionSyntax =>
-                    context.NewLineBeforeOpenBrace.HasFlag(BraceNewLine.Lambdas) ? Doc.Line : " ",
-                _ => Doc.Line
+                IfStatementSyntax
+                or ElseClauseSyntax
+                or ForStatementSyntax
+                or ForEachStatementSyntax
+                or WhileStatementSyntax
+                or TryStatementSyntax
+                or CatchClauseSyntax
+                or FinallyClauseSyntax => context.NewLineBeforeOpenBrace.HasFlag(
+                    BraceNewLine.ControlBlocks
+                )
+                    ? Doc.Line
+                    : " ",
+                BaseMethodDeclarationSyntax => context.NewLineBeforeOpenBrace.HasFlag(
+                    BraceNewLine.Methods
+                )
+                    ? Doc.Line
+                    : " ",
+                LocalFunctionStatementSyntax => context.NewLineBeforeOpenBrace.HasFlag(
+                    BraceNewLine.LocalFunctions
+                )
+                    ? Doc.Line
+                    : " ",
+                AccessorDeclarationSyntax => context.NewLineBeforeOpenBrace.HasFlag(
+                    BraceNewLine.Accessors
+                )
+                    ? Doc.Line
+                    : " ",
+                AnonymousMethodExpressionSyntax => context.NewLineBeforeOpenBrace.HasFlag(
+                    BraceNewLine.AnonymousMethods
+                )
+                    ? Doc.Line
+                    : " ",
+                SimpleLambdaExpressionSyntax => context.NewLineBeforeOpenBrace.HasFlag(
+                    BraceNewLine.Lambdas
+                )
+                    ? Doc.Line
+                    : " ",
+                _ => Doc.Line,
             },
             Token.Print(node.OpenBraceToken, context),
             node.Statements.Count == 0 ? " " : Doc.Concat(innerDoc, statementSeparator),

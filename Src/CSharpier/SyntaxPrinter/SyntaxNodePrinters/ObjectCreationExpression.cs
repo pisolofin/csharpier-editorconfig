@@ -21,7 +21,11 @@ internal static class ObjectCreationExpression
                     : Doc.Null,
                 node.Initializer != null
                     ? Doc.Concat(
-                        context.NewLineBeforeOpenBrace.HasFlag(BraceNewLine.ObjectCollectionArrayInitializers) ? Doc.Line : " ",
+                        context.NewLineBeforeOpenBrace.HasFlag(
+                            BraceNewLine.ObjectCollectionArrayInitializers
+                        )
+                            ? Doc.Line
+                            : " ",
                         InitializerExpression.Print(node.Initializer, context)
                     )
                     : Doc.Null

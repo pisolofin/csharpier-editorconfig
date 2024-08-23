@@ -42,10 +42,13 @@ internal class ConfigurationFileOptions
                 NewLineBeforeElse = matchingOverride.NewLineBeforeElse,
                 NewLineBeforeCatch = matchingOverride.NewLineBeforeCatch,
                 NewLineBeforeFinally = matchingOverride.NewLineBeforeFinally,
-                NewLineBeforeMembersInObjectInitializers = matchingOverride.NewLineBeforeMembersInObjectInitializers,
-                NewLineBeforeMembersInAnonymousTypes = matchingOverride.NewLineBeforeMembersInAnonymousTypes,
-                NewLineBetweenQueryExpressionClauses = matchingOverride.NewLineBetweenQueryExpressionClauses,
-                UsePrettierStyleTrailingCommas = matchingOverride.UsePrettierStyleTrailingCommas
+                NewLineBeforeMembersInObjectInitializers =
+                    matchingOverride.NewLineBeforeMembersInObjectInitializers,
+                NewLineBeforeMembersInAnonymousTypes =
+                    matchingOverride.NewLineBeforeMembersInAnonymousTypes,
+                NewLineBetweenQueryExpressionClauses =
+                    matchingOverride.NewLineBetweenQueryExpressionClauses,
+                UsePrettierStyleTrailingCommas = matchingOverride.UsePrettierStyleTrailingCommas,
             };
         }
 
@@ -63,10 +66,11 @@ internal class ConfigurationFileOptions
                 NewLineBeforeElse = this.NewLineBeforeElse,
                 NewLineBeforeCatch = this.NewLineBeforeCatch,
                 NewLineBeforeFinally = this.NewLineBeforeFinally,
-                NewLineBeforeMembersInObjectInitializers = this.NewLineBeforeMembersInObjectInitializers,
+                NewLineBeforeMembersInObjectInitializers =
+                    this.NewLineBeforeMembersInObjectInitializers,
                 NewLineBeforeMembersInAnonymousTypes = this.NewLineBeforeMembersInAnonymousTypes,
                 NewLineBetweenQueryExpressionClauses = this.NewLineBetweenQueryExpressionClauses,
-                UsePrettierStyleTrailingCommas = this.UsePrettierStyleTrailingCommas
+                UsePrettierStyleTrailingCommas = this.UsePrettierStyleTrailingCommas,
             };
         }
 

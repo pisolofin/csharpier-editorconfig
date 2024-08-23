@@ -11,8 +11,8 @@ internal static class InitializerExpression
             : Doc.Null;
 
         var alwaysBreak =
-            context.NewLineBeforeMembersInObjectInitializers ??
-            (
+            context.NewLineBeforeMembersInObjectInitializers
+            ?? (
                 (
                     node.Expressions.Count >= 3
                     && (

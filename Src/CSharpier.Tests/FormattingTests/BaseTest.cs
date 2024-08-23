@@ -37,11 +37,17 @@ public class BaseTest
                 new FileSystem(),
                 CancellationToken.None
             );
-            printerOptions = System.Text.Json.JsonSerializer.Deserialize<PrinterOptions>(printerOptionsReaderResult.FileContents)!;
+            printerOptions = System.Text.Json.JsonSerializer.Deserialize<PrinterOptions>(
+                printerOptionsReaderResult.FileContents
+            )!;
         }
         else
         {
-            printerOptions = new PrinterOptions { Width = PrinterOptions.WidthUsedByTests, UseTabs = useTabs };
+            printerOptions = new PrinterOptions
+            {
+                Width = PrinterOptions.WidthUsedByTests,
+                UseTabs = useTabs,
+            };
         }
 
         var result = await CSharpFormatter.FormatAsync(

@@ -31,12 +31,18 @@ internal class Section
         this.NewLineBeforeElse = section.Keys["csharp_new_line_before_else"];
         this.NewLineBeforeCatch = section.Keys["csharp_new_line_before_catch"];
         this.NewLineBeforeFinally = section.Keys["csharp_new_line_before_finally"];
-        this.NewLineBeforeMembersInObjectInitializers = section.Keys["csharp_new_line_before_members_in_object_initializers"];
-        this.NewLineBeforeMembersInAnonymousTypes = section.Keys["csharp_new_line_before_members_in_anonymous_types"];
-        this.NewLineBetweenQueryExpressionClauses = section.Keys["csharp_new_line_between_query_expression_clauses"];
+        this.NewLineBeforeMembersInObjectInitializers = section.Keys[
+            "csharp_new_line_before_members_in_object_initializers"
+        ];
+        this.NewLineBeforeMembersInAnonymousTypes = section.Keys[
+            "csharp_new_line_before_members_in_anonymous_types"
+        ];
+        this.NewLineBetweenQueryExpressionClauses = section.Keys[
+            "csharp_new_line_between_query_expression_clauses"
+        ];
     }
 
-public bool IsMatch(string fileName)
+    public bool IsMatch(string fileName)
     {
         return this.matcher.IsMatch(fileName);
     }

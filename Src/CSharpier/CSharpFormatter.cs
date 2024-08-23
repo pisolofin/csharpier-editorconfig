@@ -129,9 +129,12 @@ internal class CSharpFormatter : IFormatter
                 NewLineBeforeElse = printerOptions.NewLineBeforeElse,
                 NewLineBeforeCatch = printerOptions.NewLineBeforeCatch,
                 NewLineBeforeFinally = printerOptions.NewLineBeforeFinally,
-                NewLineBeforeMembersInObjectInitializers = printerOptions.NewLineBeforeMembersInObjectInitializers,
-                NewLineBeforeMembersInAnonymousTypes = printerOptions.NewLineBeforeMembersInAnonymousTypes,
-                NewLineBetweenQueryExpressionClauses = printerOptions.NewLineBetweenQueryExpressionClauses,
+                NewLineBeforeMembersInObjectInitializers =
+                    printerOptions.NewLineBeforeMembersInObjectInitializers,
+                NewLineBeforeMembersInAnonymousTypes =
+                    printerOptions.NewLineBeforeMembersInAnonymousTypes,
+                NewLineBetweenQueryExpressionClauses =
+                    printerOptions.NewLineBetweenQueryExpressionClauses,
                 UsePrettierStyleTrailingCommas = printerOptions.UsePrettierStyleTrailingCommas,
             };
             var document = Node.Print(rootNode, formattingContext);
@@ -157,10 +160,13 @@ internal class CSharpFormatter : IFormatter
                     NewLineBeforeElse = printerOptions.NewLineBeforeElse,
                     NewLineBeforeCatch = printerOptions.NewLineBeforeCatch,
                     NewLineBeforeFinally = printerOptions.NewLineBeforeFinally,
-                    NewLineBeforeMembersInObjectInitializers = printerOptions.NewLineBeforeMembersInObjectInitializers,
-                    NewLineBeforeMembersInAnonymousTypes = printerOptions.NewLineBeforeMembersInAnonymousTypes,
-                    NewLineBetweenQueryExpressionClauses = printerOptions.NewLineBetweenQueryExpressionClauses,
-                    UsePrettierStyleTrailingCommas = printerOptions.UsePrettierStyleTrailingCommas
+                    NewLineBeforeMembersInObjectInitializers =
+                        printerOptions.NewLineBeforeMembersInObjectInitializers,
+                    NewLineBeforeMembersInAnonymousTypes =
+                        printerOptions.NewLineBeforeMembersInAnonymousTypes,
+                    NewLineBetweenQueryExpressionClauses =
+                        printerOptions.NewLineBetweenQueryExpressionClauses,
+                    UsePrettierStyleTrailingCommas = printerOptions.UsePrettierStyleTrailingCommas,
                 };
                 document = Node.Print(
                     await syntaxTree.GetRootAsync(cancellationToken),

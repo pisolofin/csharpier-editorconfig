@@ -34,10 +34,11 @@ public static class CodeFormatter
                 NewLineBeforeElse = options.NewLineBeforeElse,
                 NewLineBeforeCatch = options.NewLineBeforeCatch,
                 NewLineBeforeFinally = options.NewLineBeforeFinally,
-                NewLineBeforeMembersInObjectInitializers = options.NewLineBeforeMembersInObjectInitializers,
+                NewLineBeforeMembersInObjectInitializers =
+                    options.NewLineBeforeMembersInObjectInitializers,
                 NewLineBeforeMembersInAnonymousTypes = options.NewLineBeforeMembersInAnonymousTypes,
                 NewLineBetweenQueryExpressionClauses = options.NewLineBetweenQueryExpressionClauses,
-                UsePrettierStyleTrailingCommas = options.UsePrettierStyleTrailingCommas
+                UsePrettierStyleTrailingCommas = options.UsePrettierStyleTrailingCommas,
             },
             cancellationToken
         );
