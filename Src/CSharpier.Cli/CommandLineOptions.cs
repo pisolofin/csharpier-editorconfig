@@ -13,6 +13,7 @@ internal class CommandLineOptions
     public bool WriteStdout { get; init; }
     public bool NoCache { get; init; }
     public bool NoMSBuildCheck { get; init; }
+    public bool CompilationErrorsAsWarnings { get; init; }
     public bool IncludeGenerated { get; init; }
     public string? StandardInFileContents { get; init; }
     public string? ConfigPath { get; init; }
@@ -30,6 +31,7 @@ internal class CommandLineOptions
         bool noCache,
         bool noMSBuildCheck,
         bool includeGenerated,
+        bool compilationErrorsAsWarnings,
         string config,
         LogLevel logLevel,
         CancellationToken cancellationToken
@@ -43,7 +45,7 @@ internal class CommandLineOptions
             {
                 Arity = ArgumentArity.ZeroOrMore,
                 Description =
-                    "One or more paths to a directory containing C# files to format or a C# file to format. It may be ommited when piping data via stdin."
+                    "One or more paths to a directory containing C# files to format or a C# file to format. It may be ommited when piping data via stdin.",
             }.LegalFilePathsOnly(),
             new Option(
                 new[] { "--check" },
@@ -93,7 +95,11 @@ internal class CommandLineOptions
             new Option<string>(
                 new[] { "--config-path" },
                 "Path to the CSharpier configuration file"
-            )
+            ),
+            new Option(
+                new[] { "--compilation-errors-as-warnings" },
+                "Treat compilation errors from files as warnings instead of errors."
+            ),
         };
 
         rootCommand.AddValidator(cmd =>

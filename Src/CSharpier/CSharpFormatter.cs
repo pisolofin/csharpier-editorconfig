@@ -102,7 +102,7 @@ internal class CSharpFormatter : IFormatter
                 {
                     Code = syntaxTree.ToString(),
                     CompilationErrors = diagnostics,
-                    AST = printerOptions.IncludeAST ? PrintAST(rootNode) : string.Empty
+                    AST = printerOptions.IncludeAST ? PrintAST(rootNode) : string.Empty,
                 };
 
                 return true;
@@ -123,15 +123,18 @@ internal class CSharpFormatter : IFormatter
             var formattingContext = new FormattingContext
             {
                 LineEnding = lineEnding,
-                IndentSize = printerOptions.TabWidth,
+                IndentSize = printerOptions.IndentSize,
                 UseTabs = printerOptions.UseTabs,
                 NewLineBeforeOpenBrace = printerOptions.NewLineBeforeOpenBrace,
                 NewLineBeforeElse = printerOptions.NewLineBeforeElse,
                 NewLineBeforeCatch = printerOptions.NewLineBeforeCatch,
                 NewLineBeforeFinally = printerOptions.NewLineBeforeFinally,
-                NewLineBeforeMembersInObjectInitializers = printerOptions.NewLineBeforeMembersInObjectInitializers,
-                NewLineBeforeMembersInAnonymousTypes = printerOptions.NewLineBeforeMembersInAnonymousTypes,
-                NewLineBetweenQueryExpressionClauses = printerOptions.NewLineBetweenQueryExpressionClauses,
+                NewLineBeforeMembersInObjectInitializers =
+                    printerOptions.NewLineBeforeMembersInObjectInitializers,
+                NewLineBeforeMembersInAnonymousTypes =
+                    printerOptions.NewLineBeforeMembersInAnonymousTypes,
+                NewLineBetweenQueryExpressionClauses =
+                    printerOptions.NewLineBetweenQueryExpressionClauses,
                 UsePrettierStyleTrailingCommas = printerOptions.UsePrettierStyleTrailingCommas,
             };
             var document = Node.Print(rootNode, formattingContext);
@@ -151,16 +154,19 @@ internal class CSharpFormatter : IFormatter
                 var formattingContext2 = new FormattingContext
                 {
                     LineEnding = lineEnding,
-                    IndentSize = printerOptions.TabWidth,
+                    IndentSize = printerOptions.IndentSize,
                     UseTabs = printerOptions.UseTabs,
                     NewLineBeforeOpenBrace = printerOptions.NewLineBeforeOpenBrace,
                     NewLineBeforeElse = printerOptions.NewLineBeforeElse,
                     NewLineBeforeCatch = printerOptions.NewLineBeforeCatch,
                     NewLineBeforeFinally = printerOptions.NewLineBeforeFinally,
-                    NewLineBeforeMembersInObjectInitializers = printerOptions.NewLineBeforeMembersInObjectInitializers,
-                    NewLineBeforeMembersInAnonymousTypes = printerOptions.NewLineBeforeMembersInAnonymousTypes,
-                    NewLineBetweenQueryExpressionClauses = printerOptions.NewLineBetweenQueryExpressionClauses,
-                    UsePrettierStyleTrailingCommas = printerOptions.UsePrettierStyleTrailingCommas
+                    NewLineBeforeMembersInObjectInitializers =
+                        printerOptions.NewLineBeforeMembersInObjectInitializers,
+                    NewLineBeforeMembersInAnonymousTypes =
+                        printerOptions.NewLineBeforeMembersInAnonymousTypes,
+                    NewLineBetweenQueryExpressionClauses =
+                        printerOptions.NewLineBetweenQueryExpressionClauses,
+                    UsePrettierStyleTrailingCommas = printerOptions.UsePrettierStyleTrailingCommas,
                 };
                 document = Node.Print(
                     await syntaxTree.GetRootAsync(cancellationToken),
@@ -188,7 +194,7 @@ internal class CSharpFormatter : IFormatter
         {
             return new CodeFormatterResult
             {
-                FailureMessage = "We can't handle this deep of recursion yet."
+                FailureMessage = "We can't handle this deep of recursion yet.",
             };
         }
     }

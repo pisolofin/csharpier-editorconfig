@@ -25,13 +25,20 @@ public static class CodeFormatter
             {
                 Width = options.Width,
                 UseTabs = options.IndentStyle == IndentStyle.Tabs,
-                TabWidth = options.IndentSize,
+                IndentSize = options.IndentSize,
                 EndOfLine = options.EndOfLine,
                 IncludeGenerated = options.IncludeGenerated,
+                Formatter = "csharp",
+
                 NewLineBeforeOpenBrace = options.NewLineBeforeOpenBrace,
                 NewLineBeforeElse = options.NewLineBeforeElse,
                 NewLineBeforeCatch = options.NewLineBeforeCatch,
-                NewLineBeforeFinally = options.NewLineBeforeFinally
+                NewLineBeforeFinally = options.NewLineBeforeFinally,
+                NewLineBeforeMembersInObjectInitializers =
+                    options.NewLineBeforeMembersInObjectInitializers,
+                NewLineBeforeMembersInAnonymousTypes = options.NewLineBeforeMembersInAnonymousTypes,
+                NewLineBetweenQueryExpressionClauses = options.NewLineBetweenQueryExpressionClauses,
+                UsePrettierStyleTrailingCommas = options.UsePrettierStyleTrailingCommas,
             },
             cancellationToken
         );
@@ -59,8 +66,9 @@ public static class CodeFormatter
             {
                 Width = options.Width,
                 UseTabs = options.IndentStyle == IndentStyle.Tabs,
-                TabWidth = options.IndentSize,
-                EndOfLine = options.EndOfLine
+                IndentSize = options.IndentSize,
+                EndOfLine = options.EndOfLine,
+                Formatter = "csharp",
             },
             SourceCodeKind.Regular,
             cancellationToken

@@ -11,10 +11,14 @@ public class CodeFormatterOptions
     public bool NewLineBeforeElse { get; init; } = true;
     public bool NewLineBeforeCatch { get; init; } = true;
     public bool NewLineBeforeFinally { get; init; } = true;
+    public bool? NewLineBeforeMembersInObjectInitializers { get; init; } = null;
+    public bool? NewLineBeforeMembersInAnonymousTypes { get; init; } = null;
+    public bool? NewLineBetweenQueryExpressionClauses { get; init; } = null;
+    public bool UsePrettierStyleTrailingCommas { get; init; } = true;
 }
 
 public enum IndentStyle
 {
     Spaces,
-    Tabs
+    Tabs,
 }

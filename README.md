@@ -1,7 +1,12 @@
 
 # csharpier-config
 
-This is as non opinionated version of [csharpier](https://github.com/belav/csharpier) version 0.28.1 tool created to add EditorConfig file style guide, allowing users to define and apply custom styling options.
+[![Validate Pull Request](https://github.com/pisolofin/csharpier-editorconfig/actions/workflows/validate_pull_request.yml/badge.svg?branch=feature%2Ftest-config-file)](https://github.com/pisolofin/csharpier-editorconfig/actions/workflows/validate_pull_request.yml)
+
+[![NuGet Version](https://img.shields.io/nuget/v/CSharpier-Config?style=flat&color=blue)](https://www.nuget.org/packages/CSharpier-Config/)
+
+
+This is as non opinionated version of [csharpier](https://github.com/belav/csharpier) version 0.29.0 tool created to add EditorConfig file style guide, allowing users to define and apply custom styling options.
 
 I started implementing these options in a separate branch called [feature/brackets](https://github.com/pisolofin/csharpier-editorconfig/tree/feature/brackets).
 

@@ -27,7 +27,10 @@ internal static class IfStatement
 
         if (node.Else != null)
         {
-            docs.Add(context.NewLineBeforeElse ? Doc.HardLine : " ", Node.Print(node.Else, context));
+            docs.Add(
+                context.NewLineBeforeElse ? Doc.HardLine : " ",
+                Node.Print(node.Else, context)
+            );
         }
 
         return Doc.Concat(docs);

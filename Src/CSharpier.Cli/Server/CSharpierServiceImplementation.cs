@@ -41,9 +41,15 @@ internal class CSharpierServiceImplementation(string? configPath, ILogger logger
                 return new FormatFileResult(Status.Ignored);
             }
 
+            var printerOptions = optionsProvider.GetPrinterOptionsFor(formatFileParameter.fileName);
+            if (printerOptions == null)
+            {
+                return new FormatFileResult(Status.UnsupportedFile);
+            }
+
             var result = await CSharpFormatter.FormatAsync(
                 formatFileParameter.fileContents,
-                optionsProvider.GetPrinterOptionsFor(formatFileParameter.fileName),
+                printerOptions,
                 cancellationToken
             );
 
@@ -54,7 +60,7 @@ internal class CSharpierServiceImplementation(string? configPath, ILogger logger
             DebugLogger.Log(ex.ToString());
             return new FormatFileResult(Status.Failed)
             {
-                errorMessage = "An exception was thrown\n" + ex
+                errorMessage = "An exception was thrown\n" + ex,
             };
         }
     }

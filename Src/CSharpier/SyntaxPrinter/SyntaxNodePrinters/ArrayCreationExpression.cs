@@ -9,7 +9,11 @@ internal static class ArrayCreationExpression
             Node.Print(node.Type, context),
             node.Initializer != null
                 ? Doc.Concat(
-                    context.NewLineBeforeOpenBrace.HasFlag(BraceNewLine.ObjectCollectionArrayInitializers) ? Doc.Line : " ",
+                    context.NewLineBeforeOpenBrace.HasFlag(
+                        BraceNewLine.ObjectCollectionArrayInitializers
+                    )
+                        ? Doc.Line
+                        : " ",
                     Node.Print(node.Initializer, context)
                 )
                 : Doc.Null

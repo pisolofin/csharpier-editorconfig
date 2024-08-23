@@ -28,7 +28,8 @@ JSON
     "tabWidth": 4,
     "endOfLine": "auto",
 
-    "newLineBeforeOpenBrace": "none",
+    "newLineBeforeOpenBrace": "Accessors,AnonymousMethods",
+    "newLineBeforeOpenBrace_Alternative": "None",
     "newLineBeforeElse": true,
     "newLineBeforeCatch": true,
     "newLineBeforeFinally": true,
@@ -45,7 +46,7 @@ useTabs: false
 tabWidth: 4
 endOfLine: auto
 
-newLineBeforeOpenBrace: none
+newLineBeforeOpenBrace: accessors, AnonymousMethods
 newLineBeforeElse: true
 newLineBeforeCatch: true
 newLineBeforeFinally: true
@@ -247,6 +248,35 @@ For example in the following code block, the following symbol sets would be need
 When supplying symbol sets, they will be used for all files being formatted. This will slow down formatting, and determining all symbol sets needed across all files won't be straight forward.
 
 The long term plan is to improve Csharpier's ability to determine the symbol sets itself and to allow specifying them for individual files.
+
+### Configuration Overrides ###
+_First available in 0.29.0_
+Overrides allows you to specify different configuration options based on glob patterns. This can be used to format non-standard extensions, or to change options based on file path. Top level options will apply to `**/*.{cs,csx}`
+
+```json
+{
+    "overrides": [
+        {
+           "files": ["*.cst"],
+           "formatter": "csharp",
+           "tabWidth": 2,
+           "useTabs": true,
+           "printWidth": 10,
+           "endOfLine": "LF"
+        }
+    ]
+}
+```
+
+```yaml
+overrides:
+    - files: "*.cst"
+      formatter: "csharp"
+      tabWidth: 2
+      useTabs: true
+      printWidth: 10
+      endOfLine: "LF"
+```
 
 ### EditorConfig
 _First available in 0.26.0_

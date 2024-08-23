@@ -22,12 +22,22 @@ public class OptionsProviderTests
     }
 
     [Test]
-    public async Task Should_Return_Default_Options_With_No_File()
+    public async Task Should_Return_Default_Options_With_No_File_And_Known_Extension()
     {
         var context = new TestContext();
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
         ShouldHaveDefaultOptions(result);
+    }
+
+    [Test]
+    public async Task Should_Return_Default_Options_With_No_File_And_Unknown_Extension()
+    {
+        var context = new TestContext();
+        var result = async () =>
+            await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cst");
+
+        await result.Should().ThrowAsync<Exception>();
     }
 
     [TestCase(".csharpierrc")]
@@ -145,7 +155,7 @@ endOfLine: crlf
 
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
-        result.TabWidth.Should().Be(10);
+        result.IndentSize.Should().Be(10);
     }
 
     [Test]
@@ -157,6 +167,160 @@ endOfLine: crlf
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
         result.UseTabs.Should().BeTrue();
+    }
+
+    [Test]
+    public async Task Should_Return_NewLineBeforeOpenBrace_With_Json()
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.csharpierrc",
+            "{ \"newLineBeforeOpenBrace\": \"Accessors,AnonymousMethods\" }"
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result
+            .NewLineBeforeOpenBrace.Should()
+            .Be(BraceNewLine.Accessors | BraceNewLine.AnonymousMethods);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_NewLineBeforeElse_With_Json(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.csharpierrc",
+            $"{{ \"newLineBeforeElse\": {value.ToString().ToLower()} }}"
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeElse.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_NewLineBeforeCatch_With_Json(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.csharpierrc",
+            $"{{ \"newLineBeforeCatch\": {value.ToString().ToLower()} }}"
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeCatch.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_NewLineBeforeFinally_With_Json(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.csharpierrc",
+            $"{{ \"newLineBeforeFinally\": {value.ToString().ToLower()} }}"
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeFinally.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Return_NewLineBeforeMembersInObjectInitializers_With_Json(bool? value)
+    {
+        var context = new TestContext();
+        if (value.HasValue)
+        {
+            context.WhenAFileExists(
+                "c:/test/.csharpierrc",
+                $"{{ \"newLineBeforeMembersInObjectInitializers\": {value.Value.ToString().ToLower()} }}"
+            );
+        }
+        else
+        {
+            context.WhenAFileExists(
+                "c:/test/.csharpierrc",
+                $"{{ \"newLineBeforeMembersInObjectInitializers\": null }}"
+            );
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeMembersInObjectInitializers.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Return_NewLineBeforeMembersInAnonymousTypes_With_Json(bool? value)
+    {
+        var context = new TestContext();
+        if (value.HasValue)
+        {
+            context.WhenAFileExists(
+                "c:/test/.csharpierrc",
+                $"{{ \"newLineBeforeMembersInAnonymousTypes\": {value.Value.ToString().ToLower()} }}"
+            );
+        }
+        else
+        {
+            context.WhenAFileExists(
+                "c:/test/.csharpierrc",
+                $"{{ \"newLineBeforeMembersInAnonymousTypes\": null }}"
+            );
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeMembersInAnonymousTypes.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Return_NewLineBetweenQueryExpressionClauses_With_Json(bool? value)
+    {
+        var context = new TestContext();
+        if (value.HasValue)
+        {
+            context.WhenAFileExists(
+                "c:/test/.csharpierrc",
+                $"{{ \"newLineBetweenQueryExpressionClauses\": {value.Value.ToString().ToLower()} }}"
+            );
+        }
+        else
+        {
+            context.WhenAFileExists(
+                "c:/test/.csharpierrc",
+                $"{{ \"newLineBetweenQueryExpressionClauses\": null }}"
+            );
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBetweenQueryExpressionClauses.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_UsePrettierStyleTrailingCommas_With_Json(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.csharpierrc",
+            $"{{ \"usePrettierStyleTrailingCommas\": {value.ToString().ToLower()} }}"
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.UsePrettierStyleTrailingCommas.Should().Be(value);
     }
 
     [Test]
@@ -178,7 +342,7 @@ endOfLine: crlf
 
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
-        result.TabWidth.Should().Be(10);
+        result.IndentSize.Should().Be(10);
     }
 
     [Test]
@@ -190,6 +354,179 @@ endOfLine: crlf
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
         result.UseTabs.Should().BeTrue();
+    }
+
+    [Test]
+    public async Task Should_Return_NewLineBeforeOpenBrace_With_Yaml()
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.csharpierrc",
+            "newLineBeforeOpenBrace: accessors, AnonymousMethods"
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result
+            .NewLineBeforeOpenBrace.Should()
+            .Be(BraceNewLine.Accessors | BraceNewLine.AnonymousMethods);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_NewLineBeforeElse_With_Yaml(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.csharpierrc",
+            $"newLineBeforeElse: {value.ToString().ToLower()}"
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeElse.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_NewLineBeforeCatch_With_Yaml(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.csharpierrc",
+            $"newLineBeforeCatch: {value.ToString().ToLower()}"
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeCatch.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_NewLineBeforeFinally_With_Yaml(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.csharpierrc",
+            $"newLineBeforeFinally: {value.ToString().ToLower()}"
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeFinally.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Return_NewLineBeforeMembersInObjectInitializers_With_Yaml(bool? value)
+    {
+        var context = new TestContext();
+        if (value.HasValue)
+        {
+            context.WhenAFileExists(
+                "c:/test/.csharpierrc",
+                $"newLineBeforeMembersInObjectInitializers: {value.Value.ToString().ToLower()}"
+            );
+        }
+        else
+        {
+            context.WhenAFileExists(
+                "c:/test/.csharpierrc",
+                $"newLineBeforeMembersInObjectInitializers: null"
+            );
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeMembersInObjectInitializers.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Return_NewLineBeforeMembersInAnonymousTypes_With_Yaml(bool? value)
+    {
+        var context = new TestContext();
+        if (value.HasValue)
+        {
+            context.WhenAFileExists(
+                "c:/test/.csharpierrc",
+                $"newLineBeforeMembersInAnonymousTypes: {value.Value.ToString().ToLower()}"
+            );
+        }
+        else
+        {
+            context.WhenAFileExists(
+                "c:/test/.csharpierrc",
+                $"newLineBeforeMembersInAnonymousTypes: null"
+            );
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeMembersInAnonymousTypes.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Return_NewLineBetweenQueryExpressionClauses_With_Yaml(bool? value)
+    {
+        var context = new TestContext();
+        if (value.HasValue)
+        {
+            context.WhenAFileExists(
+                "c:/test/.csharpierrc",
+                $"newLineBetweenQueryExpressionClauses: {value.Value.ToString().ToLower()}"
+            );
+        }
+        else
+        {
+            context.WhenAFileExists(
+                "c:/test/.csharpierrc",
+                $"newLineBetweenQueryExpressionClauses: null"
+            );
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBetweenQueryExpressionClauses.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_UsePrettierStyleTrailingCommas_With_Yaml(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.csharpierrc",
+            $"usePrettierStyleTrailingCommas: {value.ToString().ToLower()}"
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.UsePrettierStyleTrailingCommas.Should().Be(value);
+    }
+
+    [Test]
+    public async Task Should_Return_TabWidth_For_Overrid()
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.csharpierrc",
+            """
+            overrides:
+                - files: "*.cst"
+                  formatter: "csharp"
+                  tabWidth: 2
+            """
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cst");
+
+        result.IndentSize.Should().Be(2);
     }
 
     [Test]
@@ -210,7 +547,7 @@ end_of_line = crlf
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
         result.UseTabs.Should().BeFalse();
-        result.TabWidth.Should().Be(2);
+        result.IndentSize.Should().Be(2);
         result.Width.Should().Be(10);
         result.EndOfLine.Should().Be(EndOfLine.CRLF);
     }
@@ -239,7 +576,7 @@ end_of_line = crlf
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
         result.UseTabs.Should().BeFalse();
-        result.TabWidth.Should().Be(2);
+        result.IndentSize.Should().Be(2);
         result.Width.Should().Be(10);
         result.EndOfLine.Should().Be(EndOfLine.CRLF);
     }
@@ -261,7 +598,7 @@ indent_size = 4
 
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
-        result.TabWidth.Should().Be(4);
+        result.IndentSize.Should().Be(4);
     }
 
     [Test]
@@ -279,7 +616,7 @@ indent_size = 4
 
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
-        result.TabWidth.Should().Be(4);
+        result.IndentSize.Should().Be(4);
     }
 
     [Test]
@@ -296,7 +633,7 @@ indent_size==
 
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
-        result.TabWidth.Should().Be(4);
+        result.IndentSize.Should().Be(4);
     }
 
     [TestCase("tab_width")]
@@ -316,7 +653,7 @@ indent_size==
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
         result.UseTabs.Should().BeTrue();
-        result.TabWidth.Should().Be(2);
+        result.IndentSize.Should().Be(2);
     }
 
     [Test]
@@ -336,7 +673,7 @@ indent_size==
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
         result.UseTabs.Should().BeTrue();
-        result.TabWidth.Should().Be(3);
+        result.IndentSize.Should().Be(3);
     }
 
     [Test]
@@ -354,7 +691,7 @@ indent_size==
 
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
-        result.TabWidth.Should().Be(3);
+        result.IndentSize.Should().Be(3);
     }
 
     [Test]
@@ -382,7 +719,7 @@ indent_size==
             "c:/test/subfolder",
             "c:/test/subfolder/test.cs"
         );
-        result.TabWidth.Should().Be(1);
+        result.IndentSize.Should().Be(1);
         result.Width.Should().Be(10);
     }
 
@@ -410,7 +747,7 @@ indent_size==
             "c:/test/subfolder",
             "c:/test/subfolder/test.cs"
         );
-        result.TabWidth.Should().Be(4);
+        result.IndentSize.Should().Be(4);
     }
 
     [Test]
@@ -458,7 +795,7 @@ indent_size = 2
         );
 
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
-        result.TabWidth.Should().Be(2);
+        result.IndentSize.Should().Be(2);
     }
 
     [Test]
@@ -477,7 +814,7 @@ indent_size = 2
         );
 
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
-        result.TabWidth.Should().Be(2);
+        result.IndentSize.Should().Be(2);
     }
 
     [Test]
@@ -496,7 +833,7 @@ indent_size = 2
         );
 
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
-        result.TabWidth.Should().Be(2);
+        result.IndentSize.Should().Be(2);
     }
 
     [Test]
@@ -515,7 +852,7 @@ indent_size = 2
             "c:/test/subfolder",
             "c:/test/subfolder/test.cs"
         );
-        result.TabWidth.Should().Be(2);
+        result.IndentSize.Should().Be(2);
     }
 
     [Test]
@@ -535,7 +872,7 @@ indent_size = 2
             "c:/test/subfolder",
             "c:/test/test.cs"
         );
-        result.TabWidth.Should().Be(1);
+        result.IndentSize.Should().Be(1);
     }
 
     [Test]
@@ -555,7 +892,7 @@ indent_size = 2
             "c:/test",
             "c:/test/subfolder/test.cs"
         );
-        result.TabWidth.Should().Be(1);
+        result.IndentSize.Should().Be(1);
     }
 
     [Test]
@@ -573,7 +910,7 @@ INVALID
 
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
-        result.TabWidth.Should().Be(2);
+        result.IndentSize.Should().Be(2);
     }
 
     [Test]
@@ -602,7 +939,7 @@ INVALID
             "c:/test",
             "c:/test/subfolder/test.cs"
         );
-        result.TabWidth.Should().Be(1);
+        result.IndentSize.Should().Be(1);
     }
 
     [Test]
@@ -622,7 +959,7 @@ indent_size = 2
             "c:/test",
             "c:/test/subfolder/test.cs"
         );
-        result.TabWidth.Should().Be(1);
+        result.IndentSize.Should().Be(1);
     }
 
     [Test]
@@ -644,7 +981,7 @@ indent_size = 2
             "c:/test/subfolder/test.cs",
             limitEditorConfigSearch: true
         );
-        result.TabWidth.Should().Be(4);
+        result.IndentSize.Should().Be(4);
     }
 
     [Test]
@@ -666,7 +1003,7 @@ indent_size = 2
             "c:/test/subfolder/test.cs",
             limitEditorConfigSearch: true
         );
-        result.TabWidth.Should().Be(4);
+        result.IndentSize.Should().Be(4);
     }
 
     [Test]
@@ -686,13 +1023,13 @@ indent_size = 2
             "c:/test/subfolder/test.cs",
             limitEditorConfigSearch: true
         );
-        result.TabWidth.Should().Be(1);
+        result.IndentSize.Should().Be(1);
     }
 
     private static void ShouldHaveDefaultOptions(PrinterOptions printerOptions)
     {
         printerOptions.Width.Should().Be(100);
-        printerOptions.TabWidth.Should().Be(4);
+        printerOptions.IndentSize.Should().Be(4);
         printerOptions.UseTabs.Should().BeFalse();
         printerOptions.EndOfLine.Should().Be(EndOfLine.Auto);
     }
@@ -733,7 +1070,191 @@ indent_size = 2
                 limitEditorConfigSearch
             );
 
-            return provider.GetPrinterOptionsFor(filePath);
+            var printerOptions = provider.GetPrinterOptionsFor(filePath);
+
+            if (printerOptions is null)
+            {
+                throw new Exception("PrinterOptions was null");
+            }
+
+            return printerOptions;
         }
+    }
+
+    [Test]
+    public async Task Should_Support_EditorConfig_NewLineBeforeOpenBrace()
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.editorconfig",
+            @"
+    [*]
+    csharp_new_line_before_open_brace = accessors,anonymous_methods
+    "
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor(
+            "c:/test/subfolder",
+            "c:/test/subfolder/test.cs",
+            limitEditorConfigSearch: true
+        );
+        result
+            .NewLineBeforeOpenBrace.Should()
+            .Be(BraceNewLine.Accessors | BraceNewLine.AnonymousMethods);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Support_EditorConfig_NewLineBeforeElse(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.editorconfig",
+            @"
+    [*]
+    csharp_new_line_before_else = "
+                + value.ToString().ToLower()
+                + @"
+    "
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor(
+            "c:/test/subfolder",
+            "c:/test/subfolder/test.cs",
+            limitEditorConfigSearch: true
+        );
+        result.NewLineBeforeElse.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Support_EditorConfig_NewLineBeforeCatch(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.editorconfig",
+            @"
+    [*]
+    csharp_new_line_before_catch = "
+                + value.ToString().ToLower()
+                + @"
+    "
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor(
+            "c:/test/subfolder",
+            "c:/test/subfolder/test.cs",
+            limitEditorConfigSearch: true
+        );
+        result.NewLineBeforeCatch.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Support_EditorConfig_NewLineBeforeFinally(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists(
+            "c:/test/.editorconfig",
+            @"
+    [*]
+    csharp_new_line_before_finally = "
+                + value.ToString().ToLower()
+                + @"
+    "
+        );
+
+        var result = await context.CreateProviderAndGetOptionsFor(
+            "c:/test/subfolder",
+            "c:/test/subfolder/test.cs",
+            limitEditorConfigSearch: true
+        );
+        result.NewLineBeforeFinally.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Support_EditorConfig_NewLineBeforeMembersInObjectInitializers(
+        bool? value
+    )
+    {
+        var context = new TestContext();
+
+        if (value.HasValue)
+        {
+            context.WhenAFileExists(
+                "c:/test/.editorconfig",
+                @"
+        [*]
+        csharp_new_line_before_members_in_object_initializers = "
+                    + value.Value.ToString().ToLower()
+                    + @"
+        "
+            );
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor(
+            "c:/test/subfolder",
+            "c:/test/subfolder/test.cs",
+            limitEditorConfigSearch: true
+        );
+        result.NewLineBeforeMembersInObjectInitializers.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Support_EditorConfig_NewLineBeforeMembersInAnonymousTypes(bool? value)
+    {
+        var context = new TestContext();
+
+        if (value.HasValue)
+        {
+            context.WhenAFileExists(
+                "c:/test/.editorconfig",
+                @"
+        [*]
+        csharp_new_line_before_members_in_anonymous_types = "
+                    + value.Value.ToString().ToLower()
+                    + @"
+        "
+            );
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor(
+            "c:/test/subfolder",
+            "c:/test/subfolder/test.cs",
+            limitEditorConfigSearch: true
+        );
+        result.NewLineBeforeMembersInAnonymousTypes.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Support_EditorConfig_NewLineBetweenQueryExpressionClauses(bool? value)
+    {
+        var context = new TestContext();
+
+        if (value.HasValue)
+        {
+            context.WhenAFileExists(
+                "c:/test/.editorconfig",
+                @"
+        [*]
+        csharp_new_line_between_query_expression_clauses = "
+                    + value.Value.ToString().ToLower()
+                    + @"
+        "
+            );
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor(
+            "c:/test/subfolder",
+            "c:/test/subfolder/test.cs",
+            limitEditorConfigSearch: true
+        );
+        result.NewLineBetweenQueryExpressionClauses.Should().Be(value);
     }
 }
