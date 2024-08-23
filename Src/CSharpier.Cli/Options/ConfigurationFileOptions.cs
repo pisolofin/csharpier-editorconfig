@@ -19,7 +19,7 @@ internal class ConfigurationFileOptions
     public bool NewLineBeforeFinally { get; init; } = true;
     public bool? NewLineBeforeMembersInObjectInitializers { get; init; } = null;
     public bool? NewLineBeforeMembersInAnonymousTypes { get; init; } = null;
-    public bool NewLineBetweenQueryExpressionClauses { get; init; } = true;
+    public bool? NewLineBetweenQueryExpressionClauses { get; init; } = null;
     public bool UsePrettierStyleTrailingCommas { get; init; } = true;
 
     public Override[] Overrides { get; init; } = [];
@@ -100,7 +100,7 @@ internal class Override
     public bool NewLineBeforeFinally { get; init; } = true;
     public bool? NewLineBeforeMembersInObjectInitializers { get; init; } = null;
     public bool? NewLineBeforeMembersInAnonymousTypes { get; init; } = null;
-    public bool NewLineBetweenQueryExpressionClauses { get; init; } = true;
+    public bool? NewLineBetweenQueryExpressionClauses { get; init; } = null;
     public bool UsePrettierStyleTrailingCommas { get; init; } = true;
 
     public string Files { get; init; } = string.Empty;

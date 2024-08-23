@@ -192,6 +192,101 @@ endOfLine: crlf
         result.NewLineBeforeElse.Should().Be(value);
     }
 
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_NewLineBeforeCatch_With_Json(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists("c:/test/.csharpierrc", $"{{ \"newLineBeforeCatch\": {value.ToString().ToLower()} }}");
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeCatch.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_NewLineBeforeFinally_With_Json(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists("c:/test/.csharpierrc", $"{{ \"newLineBeforeFinally\": {value.ToString().ToLower()} }}");
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeFinally.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Return_NewLineBeforeMembersInObjectInitializers_With_Json(bool? value)
+    {
+        var context = new TestContext();
+        if (value.HasValue)
+        {
+            context.WhenAFileExists("c:/test/.csharpierrc", $"{{ \"newLineBeforeMembersInObjectInitializers\": {value.Value.ToString().ToLower()} }}");
+        }else
+        {
+            context.WhenAFileExists("c:/test/.csharpierrc", $"{{ \"newLineBeforeMembersInObjectInitializers\": null }}");
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeMembersInObjectInitializers.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Return_NewLineBeforeMembersInAnonymousTypes_With_Json(bool? value)
+    {
+        var context = new TestContext();
+        if (value.HasValue)
+        {
+            context.WhenAFileExists("c:/test/.csharpierrc", $"{{ \"newLineBeforeMembersInAnonymousTypes\": {value.Value.ToString().ToLower()} }}");
+        }
+        else
+        {
+            context.WhenAFileExists("c:/test/.csharpierrc", $"{{ \"newLineBeforeMembersInAnonymousTypes\": null }}");
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeMembersInAnonymousTypes.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Return_NewLineBetweenQueryExpressionClauses_With_Json(bool? value)
+    {
+        var context = new TestContext();
+        if (value.HasValue)
+        {
+            context.WhenAFileExists("c:/test/.csharpierrc", $"{{ \"newLineBetweenQueryExpressionClauses\": {value.Value.ToString().ToLower()} }}");
+        }
+        else
+        {
+            context.WhenAFileExists("c:/test/.csharpierrc", $"{{ \"newLineBetweenQueryExpressionClauses\": null }}");
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBetweenQueryExpressionClauses.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_UsePrettierStyleTrailingCommas_With_Json(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists("c:/test/.csharpierrc", $"{{ \"usePrettierStyleTrailingCommas\": {value.ToString().ToLower()} }}");
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.UsePrettierStyleTrailingCommas.Should().Be(value);
+    }
+
     [Test]
     public async Task Should_Return_PrintWidth_With_Yaml()
     {
@@ -223,6 +318,125 @@ endOfLine: crlf
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
 
         result.UseTabs.Should().BeTrue();
+    }
+
+    [Test]
+    public async Task Should_Return_NewLineBeforeOpenBrace_With_Yaml()
+    {
+        var context = new TestContext();
+        context.WhenAFileExists("c:/test/.csharpierrc", "newLineBeforeOpenBrace: accessors, AnonymousMethods");
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeOpenBrace.Should().Be(BraceNewLine.Accessors | BraceNewLine.AnonymousMethods);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_NewLineBeforeElse_With_Yaml(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists("c:/test/.csharpierrc", $"newLineBeforeElse: {value.ToString().ToLower()}");
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeElse.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_NewLineBeforeCatch_With_Yaml(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists("c:/test/.csharpierrc", $"newLineBeforeCatch: {value.ToString().ToLower()}");
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeCatch.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_NewLineBeforeFinally_With_Yaml(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists("c:/test/.csharpierrc", $"newLineBeforeFinally: {value.ToString().ToLower()}");
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeFinally.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Return_NewLineBeforeMembersInObjectInitializers_With_Yaml(bool? value)
+    {
+        var context = new TestContext();
+        if (value.HasValue)
+        {
+            context.WhenAFileExists("c:/test/.csharpierrc", $"newLineBeforeMembersInObjectInitializers: {value.Value.ToString().ToLower()}");
+        }
+        else
+        {
+            context.WhenAFileExists("c:/test/.csharpierrc", $"newLineBeforeMembersInObjectInitializers: null");
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeMembersInObjectInitializers.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Return_NewLineBeforeMembersInAnonymousTypes_With_Yaml(bool? value)
+    {
+        var context = new TestContext();
+        if (value.HasValue)
+        {
+            context.WhenAFileExists("c:/test/.csharpierrc", $"newLineBeforeMembersInAnonymousTypes: {value.Value.ToString().ToLower()}");
+        }
+        else
+        {
+            context.WhenAFileExists("c:/test/.csharpierrc", $"newLineBeforeMembersInAnonymousTypes: null");
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBeforeMembersInAnonymousTypes.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    [TestCase(null)]
+    public async Task Should_Return_NewLineBetweenQueryExpressionClauses_With_Yaml(bool? value)
+    {
+        var context = new TestContext();
+        if (value.HasValue)
+        {
+            context.WhenAFileExists("c:/test/.csharpierrc", $"newLineBetweenQueryExpressionClauses: {value.Value.ToString().ToLower()}");
+        }
+        else
+        {
+            context.WhenAFileExists("c:/test/.csharpierrc", $"newLineBetweenQueryExpressionClauses: null");
+        }
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.NewLineBetweenQueryExpressionClauses.Should().Be(value);
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task Should_Return_UsePrettierStyleTrailingCommas_With_Yaml(bool value)
+    {
+        var context = new TestContext();
+        context.WhenAFileExists("c:/test/.csharpierrc", $"usePrettierStyleTrailingCommas: {value.ToString().ToLower()}");
+
+        var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");
+
+        result.UsePrettierStyleTrailingCommas.Should().Be(value);
     }
 
     [Test]

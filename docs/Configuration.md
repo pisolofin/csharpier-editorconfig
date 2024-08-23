@@ -28,7 +28,8 @@ JSON
     "tabWidth": 4,
     "endOfLine": "auto",
 
-    "newLineBeforeOpenBrace": "none",
+    "newLineBeforeOpenBrace": "Accessors,AnonymousMethods",
+    "newLineBeforeOpenBrace_Alternative": "None",
     "newLineBeforeElse": true,
     "newLineBeforeCatch": true,
     "newLineBeforeFinally": true,
@@ -45,7 +46,7 @@ useTabs: false
 tabWidth: 4
 endOfLine: auto
 
-newLineBeforeOpenBrace: none
+newLineBeforeOpenBrace: accessors, AnonymousMethods
 newLineBeforeElse: true
 newLineBeforeCatch: true
 newLineBeforeFinally: true
