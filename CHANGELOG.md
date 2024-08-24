@@ -1,4 +1,4 @@
-﻿# 0.29.0
+# 0.29.0
 ## Breaking Changes
 ### The formatting command will now exit with an error code of 1 if one of the target files cannot be compiled [#1131](https://github.com/belav/csharpier/issues/1131)
 Prior to 0.29.0 if csharpier encountered a file that could not be compiled it would treat it as a warning and exit with a code of 0.  
