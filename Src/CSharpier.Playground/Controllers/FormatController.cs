@@ -50,6 +50,15 @@ public class FormatController : ControllerBase
         public int IndentSize { get; set; }
         public bool UseTabs { get; set; }
         public string Parser { get; set; } = string.Empty;
+
+        public BraceNewLine NewLineBeforeOpenBrace { get; set; } = BraceNewLine.All;
+        public bool NewLineBeforeElse { get; set; } = true;
+        public bool NewLineBeforeCatch { get; set; } = true;
+        public bool NewLineBeforeFinally { get; set; } = true;
+        public bool? NewLineBeforeMembersInObjectInitializers { get; set; } = null;
+        public bool? NewLineBeforeMembersInAnonymousTypes { get; set; } = null;
+        public bool? NewLineBetweenQueryExpressionClauses { get; set; } = null;
+        public bool UsePrettierStyleTrailingCommas { get; set; } = true;
     }
 
     [HttpPost]
@@ -70,6 +79,15 @@ public class FormatController : ControllerBase
                 Width = model.PrintWidth,
                 IndentSize = model.IndentSize,
                 UseTabs = model.UseTabs,
+
+                NewLineBeforeOpenBrace = model.NewLineBeforeOpenBrace,
+                NewLineBeforeElse = model.NewLineBeforeElse,
+                NewLineBeforeCatch = model.NewLineBeforeCatch,
+                NewLineBeforeFinally = model.NewLineBeforeFinally,
+                NewLineBeforeMembersInObjectInitializers = model.NewLineBeforeMembersInObjectInitializers,
+                NewLineBeforeMembersInAnonymousTypes = model.NewLineBeforeMembersInAnonymousTypes,
+                NewLineBetweenQueryExpressionClauses = model.NewLineBetweenQueryExpressionClauses,
+                UsePrettierStyleTrailingCommas = model.UsePrettierStyleTrailingCommas
             },
             sourceCodeKind,
             cancellationToken
