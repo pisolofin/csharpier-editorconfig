@@ -84,10 +84,11 @@ public class FormatController : ControllerBase
                 NewLineBeforeElse = model.NewLineBeforeElse,
                 NewLineBeforeCatch = model.NewLineBeforeCatch,
                 NewLineBeforeFinally = model.NewLineBeforeFinally,
-                NewLineBeforeMembersInObjectInitializers = model.NewLineBeforeMembersInObjectInitializers,
+                NewLineBeforeMembersInObjectInitializers =
+                    model.NewLineBeforeMembersInObjectInitializers,
                 NewLineBeforeMembersInAnonymousTypes = model.NewLineBeforeMembersInAnonymousTypes,
                 NewLineBetweenQueryExpressionClauses = model.NewLineBetweenQueryExpressionClauses,
-                UsePrettierStyleTrailingCommas = model.UsePrettierStyleTrailingCommas
+                UsePrettierStyleTrailingCommas = model.UsePrettierStyleTrailingCommas,
             },
             sourceCodeKind,
             cancellationToken

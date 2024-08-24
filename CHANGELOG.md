@@ -11,6 +11,8 @@ using SomeCompany._Word;
 CSharpier Server now uses a log file name based on the port that it is starting on to avoid concurrency issues trying to access the same log file
 
 **Full Changelog**: https://github.com/belav/csharpier/compare/0.29.0...0.29.1
+# 0.29.0.1
+ Support to all [C# formatting options](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/csharp-formatting-options) into `.editorconfig` file
 # 0.29.0
 ## Breaking Changes
 ### The formatting command will now exit with an error code of 1 if one of the target files cannot be compiled [#1131](https://github.com/belav/csharpier/issues/1131)
