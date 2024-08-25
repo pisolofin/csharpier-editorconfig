@@ -1,3 +1,3 @@
 ﻿{
-    "NewLineBeforeOpenBrace": 65527
+  "NewLineBeforeOpenBrace": "Accessors,AnonymousMethods,AnonymousTypes,Events,Indexers,Lambdas,LocalFunctions,Methods,ObjectCollectionArrayInitializers,Properties,Types"
 }

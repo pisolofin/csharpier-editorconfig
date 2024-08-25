@@ -362,7 +362,7 @@ endOfLine: crlf
         var context = new TestContext();
         context.WhenAFileExists(
             "c:/test/.csharpierrc",
-            "newLineBeforeOpenBrace: accessors, AnonymousMethods"
+            "newLineBeforeOpenBrace: accessors,AnonymousMethods"
         );
 
         var result = await context.CreateProviderAndGetOptionsFor("c:/test", "c:/test/test.cs");

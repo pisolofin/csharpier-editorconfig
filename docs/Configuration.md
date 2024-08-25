@@ -85,7 +85,7 @@ Valid options:
 Default `auto`
 
 #### New line before open brace
-_Available only in CSharpierConfig_
+_Available only in CSharpierConfig from 0.29.1_
 
 See [editorconfig](
 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/csharp-formatting-options#csharp_new_line_before_open_brace) page to more information.
@@ -97,28 +97,28 @@ All values is mapped into `BraceNewLine`.
 Default `65535` `all`
 
 #### New line before else
-_Available only in CSharpierConfig_
+_Available only in CSharpierConfig from 0.29.1_
 
 Place `else` statements on a new line.
 
 Default `true`
 
 #### New line before catch
-_Available only in CSharpierConfig_
+_Available only in CSharpierConfig from 0.29.1_
 
 Place `catch` statements on a new line.
 
 Default `true`
 
 #### New line before finally
-_Available only in CSharpierConfig_
+_Available only in CSharpierConfig from 0.29.1_
 
 Place `finally` statements on a new line.
 
 Default `true`
 
 #### New line before members in object initializers
-_Available only in CSharpierConfig_
+_Available only in CSharpierConfig from 0.29.1_
 
 Require members of object initializers to be on separate lines or not.
 
@@ -144,7 +144,7 @@ Valid options:
 Default `null`
 
 #### New line before members in anonymous types
-_Available only in CSharpierConfig_
+_Available only in CSharpierConfig from 0.29.1_
 
 Require members of anonymous types to be on separate lines or not.
 
@@ -170,7 +170,7 @@ Valid options:
 Default `null`
 
 #### New line between query expression clauses
-_Available only in CSharpierConfig_
+_Available only in CSharpierConfig from 0.29.1_
 
 Require elements of query expression clauses to be on separate lines or not.
 
@@ -198,7 +198,7 @@ Valid options:
 Default `null`
 
 #### Use Prettier style trailing commas
-_Available only in CSharpierConfig_
+_Available only in CSharpierConfig from 0.29.1_
 
 Force or no trailing comma for anonymous object/collection/initializer/switch expressions, list patterns and enum declarations in the case a line break occurs.
 

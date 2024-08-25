@@ -8,19 +8,15 @@
 
 This is as non opinionated version of [csharpier](https://github.com/belav/csharpier) version 0.29.1 tool created to add EditorConfig file style guide, allowing users to define and apply custom styling options.
 
-I started implementing these options in a separate branch called [feature/brackets](https://github.com/pisolofin/csharpier-editorconfig/tree/feature/brackets).
-
-**This is a work in progress project**
-
-In this branch, I will set up the project with new references in the documentation, as well as handle the deployment and naming of the executable program.
-
 All documentation that you find about csharpier is also valid for csharpier-config, you have only to change command like
 All documentation you find about `CSharpier` is also valid for `CSharpier-Config`. You only need to adjust the commands accordingly.
 
 - `dotnet csharpier` -> `dotnet csharpier-config`
 - `dotnet-csharpier` -> `dotnet-csharpier-config`
 
-**New feature**
+## Extra rules than CSharpier
+
+**CSharp formatting**
 
 - Support to all [C# formatting options](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/csharp-formatting-options) into `.editorconfig` file
 
@@ -37,3 +33,98 @@ csharp_new_line_between_query_expression_clauses = true
 ```
 
 For more information, please refer to the [documentation](/docs/Configuration.md)
+
+*From*
+
+```csharp
+public class ClassName
+{
+    private int _property = 0;
+    public int Property {
+        get
+            {
+            // Some logic
+            return _property;
+        }
+        set {
+            // Some logic
+            _property = value;
+        }
+    }
+
+    public void MethodName()
+    {
+        var anonymous = delegate(int param)
+        {
+            // Do something
+            return param;
+        };
+
+        int localFunction(int paramB) {
+            int def = paramB;
+            return def;
+        }
+
+        var condition = true;
+        if (condition)
+        {
+            // Do something
+        }    else
+        {
+            // Do other
+        }
+
+        var localObject = new
+        {
+            Property = 1,
+        };
+    }
+}
+```
+
+*To*
+```csharp
+public class ClassName
+{
+    private int _property = 0;
+    public int Property
+    {
+        get {
+            // Some logic
+            return _property;
+        }
+        set {
+            // Some logic
+            _property = value;
+        }
+    }
+
+    public void MethodName()
+    {
+        var anonymous = delegate(int param) {
+            // Do something
+            return param;
+        };
+
+        int localFunction(int paramB) {
+            int def = paramB;
+            return def;
+        }
+
+        var condition = true;
+        if (condition)
+        {
+            // Do something
+        }
+        else
+        {
+            // Do other
+        }
+
+        var localObject = new {
+            Property = 1,
+        };
+    }
+}
+
+```

@@ -1,4 +1,4 @@
 ﻿{
-  "NewLineBeforeOpenBrace": 65531,
+  "NewLineBeforeOpenBrace": "Accessors,AnonymousMethods,ControlBlocks,Events,Indexers,Lambdas,LocalFunctions,Methods,ObjectCollectionArrayInitializers,Properties,Types",
   "UsePrettierStyleTrailingCommas": false
 }
