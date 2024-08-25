@@ -37,9 +37,31 @@ public class BaseTest
                 new FileSystem(),
                 CancellationToken.None
             );
-            printerOptions = System.Text.Json.JsonSerializer.Deserialize<PrinterOptions>(
+            var options = System.Text.Json.JsonSerializer.Deserialize<CSharpier.Cli.Options.Override>(
                 printerOptionsReaderResult.FileContents
-            )!;
+            );
+            options ??= new CSharpier.Cli.Options.Override
+            {
+                TabWidth = PrinterOptions.WidthUsedByTests,
+                UseTabs = useTabs,
+            };
+            printerOptions = new PrinterOptions
+            {
+                UseTabs = options.UseTabs,
+                IndentSize = options.TabWidth,
+                EndOfLine = options.EndOfLine,
+                Formatter = "csharp",
+
+                NewLineBeforeOpenBrace = options.NewLineBeforeOpenBrace,
+                NewLineBeforeElse = options.NewLineBeforeElse,
+                NewLineBeforeCatch = options.NewLineBeforeCatch,
+                NewLineBeforeFinally = options.NewLineBeforeFinally,
+                NewLineBeforeMembersInObjectInitializers =
+                    options.NewLineBeforeMembersInObjectInitializers,
+                NewLineBeforeMembersInAnonymousTypes = options.NewLineBeforeMembersInAnonymousTypes,
+                NewLineBetweenQueryExpressionClauses = options.NewLineBetweenQueryExpressionClauses,
+                UsePrettierStyleTrailingCommas = options.UsePrettierStyleTrailingCommas,
+            };
         }
         else
         {
