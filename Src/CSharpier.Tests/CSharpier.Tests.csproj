@@ -55,6 +55,8 @@
     <Content Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Methods_KeR.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_ObjectCollectionArrayInitializers_KeR.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_ObjectCollectionArrayInitializers_KeR_NoTrailingCommas.expected.test" />
+    <Content Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_Allman.actual.test" />
+    <Content Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_Allman.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_KeR.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Types_KeR.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_False.expected.test" />
@@ -133,6 +135,10 @@
     <None Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_ObjectCollectionArrayInitializers_KeR_NoTrailingCommas.expected.test" />
     <None Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_ObjectCollectionArrayInitializers_KeR_NoTrailingCommas.printerOptions.json" />
     <None Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_ObjectCollectionArrayInitializers_KeR_NoTrailingCommas.test" />
+    <None Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_Allman.actual.test" />
+    <None Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_Allman.expected.test" />
+    <None Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_Allman.printerOptions.json" />
+    <None Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_Allman.test" />
     <None Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_KeR.expected.test" />
     <None Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_KeR.printerOptions.json" />
     <None Remove="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_KeR.test" />
@@ -158,6 +164,7 @@
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBefore_MembersInAnonymousTypes_True.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_AnonymousTypes_KeR_NoTrailingCommas.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_ObjectCollectionArrayInitializers_KeR_NoTrailingCommas.printerOptions.json" />
+    <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_Allman.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_Null.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_False.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_True.printerOptions.json" />

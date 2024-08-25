@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "CSharpier.Cli": {
+      "commandName": "Project"
+    },
+    "Profile 1": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\Fabio\\source\\repos\\ConsoleApp1\\ConsoleApp1"
+    }
+  }
+}

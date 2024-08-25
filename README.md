@@ -14,7 +14,9 @@ All documentation you find about `CSharpier` is also valid for `CSharpier-Config
 - `dotnet csharpier` -> `dotnet csharpier-config`
 - `dotnet-csharpier` -> `dotnet-csharpier-config`
 
-**New feature**
+## Extra rules than CSharpier
+
+**CSharp formatting**
 
 - Support to all [C# formatting options](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/csharp-formatting-options) into `.editorconfig` file
 
@@ -31,3 +33,98 @@ csharp_new_line_between_query_expression_clauses = true
 ```
 
 For more information, please refer to the [documentation](/docs/Configuration.md)
+
+*From*
+
+```csharp
+public class ClassName
+{
+    private int _property = 0;
+    public int Property {
+        get
+            {
+            // Some logic
+            return _property;
+        }
+        set {
+            // Some logic
+            _property = value;
+        }
+    }
+
+    public void MethodName()
+    {
+        var anonymous = delegate(int param)
+        {
+            // Do something
+            return param;
+        };
+
+        int localFunction(int paramB) {
+            int def = paramB;
+            return def;
+        }
+
+        var condition = true;
+        if (condition)
+        {
+            // Do something
+        }    else
+        {
+            // Do other
+        }
+
+        var localObject = new
+        {
+            Property = 1,
+        };
+    }
+}
+```
+
+*To*
+```csharp
+public class ClassName
+{
+    private int _property = 0;
+    public int Property
+    {
+        get {
+            // Some logic
+            return _property;
+        }
+        set {
+            // Some logic
+            _property = value;
+        }
+    }
+
+    public void MethodName()
+    {
+        var anonymous = delegate(int param) {
+            // Do something
+            return param;
+        };
+
+        int localFunction(int paramB) {
+            int def = paramB;
+            return def;
+        }
+
+        var condition = true;
+        if (condition)
+        {
+            // Do something
+        }
+        else
+        {
+            // Do other
+        }
+
+        var localObject = new {
+            Property = 1,
+        };
+    }
+}
+
+```
