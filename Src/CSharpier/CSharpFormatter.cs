@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json;
 using CSharpier.Formatters.CSharp;
 using CSharpier.SyntaxPrinter;
+using Microsoft.CodeAnalysis;
 
 internal class CSharpScriptFormatter : CSharpFormatter { }
 
@@ -125,6 +126,7 @@ internal class CSharpFormatter : IFormatter
                 LineEnding = lineEnding,
                 IndentSize = printerOptions.IndentSize,
                 UseTabs = printerOptions.UseTabs,
+
                 NewLineBeforeOpenBrace = printerOptions.NewLineBeforeOpenBrace,
                 NewLineBeforeElse = printerOptions.NewLineBeforeElse,
                 NewLineBeforeCatch = printerOptions.NewLineBeforeCatch,
@@ -135,6 +137,12 @@ internal class CSharpFormatter : IFormatter
                     printerOptions.NewLineBeforeMembersInAnonymousTypes,
                 NewLineBetweenQueryExpressionClauses =
                     printerOptions.NewLineBetweenQueryExpressionClauses,
+
+                QualificationForField = printerOptions.QualificationForField,
+                QualificationForProperty = printerOptions.QualificationForProperty,
+                QualificationForMethod = printerOptions.QualificationForMethod,
+                QualificationForEvent = printerOptions.QualificationForEvent,
+
                 UsePrettierStyleTrailingCommas = printerOptions.UsePrettierStyleTrailingCommas,
             };
             var document = Node.Print(rootNode, formattingContext);
@@ -156,6 +164,7 @@ internal class CSharpFormatter : IFormatter
                     LineEnding = lineEnding,
                     IndentSize = printerOptions.IndentSize,
                     UseTabs = printerOptions.UseTabs,
+
                     NewLineBeforeOpenBrace = printerOptions.NewLineBeforeOpenBrace,
                     NewLineBeforeElse = printerOptions.NewLineBeforeElse,
                     NewLineBeforeCatch = printerOptions.NewLineBeforeCatch,
@@ -166,6 +175,12 @@ internal class CSharpFormatter : IFormatter
                         printerOptions.NewLineBeforeMembersInAnonymousTypes,
                     NewLineBetweenQueryExpressionClauses =
                         printerOptions.NewLineBetweenQueryExpressionClauses,
+
+                    QualificationForField = printerOptions.QualificationForField,
+                    QualificationForProperty = printerOptions.QualificationForProperty,
+                    QualificationForMethod = printerOptions.QualificationForMethod,
+                    QualificationForEvent = printerOptions.QualificationForEvent,
+
                     UsePrettierStyleTrailingCommas = printerOptions.UsePrettierStyleTrailingCommas,
                 };
                 document = Node.Print(

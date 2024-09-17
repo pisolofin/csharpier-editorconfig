@@ -71,6 +71,19 @@ internal class EditorConfigSections
             resolvedConfiguration.NewLineBetweenQueryExpressionClauses
             ?? printerOptions.NewLineBetweenQueryExpressionClauses;
 
+        printerOptions.QualificationForField =
+            resolvedConfiguration.QualificationForField
+            ?? printerOptions.QualificationForField;
+        printerOptions.QualificationForProperty =
+            resolvedConfiguration.QualificationForProperty
+            ?? printerOptions.QualificationForProperty;
+        printerOptions.QualificationForMethod =
+            resolvedConfiguration.QualificationForMethod
+            ?? printerOptions.QualificationForMethod;
+        printerOptions.QualificationForEvent =
+            resolvedConfiguration.QualificationForEvent
+            ?? printerOptions.QualificationForEvent;
+
         return printerOptions;
     }
 
@@ -90,6 +103,11 @@ internal class EditorConfigSections
         public bool? NewLineBeforeMembersInObjectInitializers { get; }
         public bool? NewLineBeforeMembersInAnonymousTypes { get; }
         public bool? NewLineBetweenQueryExpressionClauses { get; }
+
+        public bool? QualificationForField { get; }
+        public bool? QualificationForProperty { get; }
+        public bool? QualificationForMethod { get; }
+        public bool? QualificationForEvent { get; }
 
         public ResolvedConfiguration(List<Section> sections)
         {
@@ -212,6 +230,66 @@ internal class EditorConfigSections
             {
                 this.NewLineBetweenQueryExpressionClauses =
                     newLineBetweenQueryExpressionClausesValue;
+            }
+
+            var qualificationForField = sections
+                .LastOrDefault(o => o.QualificationForField != null)
+                ?.QualificationForField;
+            if (
+                !String.IsNullOrWhiteSpace(qualificationForField)
+                && bool.TryParse(
+                    qualificationForField,
+                    out var qualificationForFieldValue
+                )
+            )
+            {
+                this.QualificationForField =
+                    qualificationForFieldValue;
+            }
+
+            var qualificationForProperty = sections
+                .LastOrDefault(o => o.QualificationForProperty != null)
+                ?.QualificationForProperty;
+            if (
+                !String.IsNullOrWhiteSpace(qualificationForProperty)
+                && bool.TryParse(
+                    qualificationForProperty,
+                    out var qualificationForPropertyValue
+                )
+            )
+            {
+                this.QualificationForProperty =
+                    qualificationForPropertyValue;
+            }
+
+            var qualificationForMethod = sections
+                .LastOrDefault(o => o.QualificationForMethod != null)
+                ?.QualificationForMethod;
+            if (
+                !String.IsNullOrWhiteSpace(qualificationForMethod)
+                && bool.TryParse(
+                    qualificationForMethod,
+                    out var qualificationForMethodValue
+                )
+            )
+            {
+                this.QualificationForMethod =
+                    qualificationForMethodValue;
+            }
+
+            var qualificationForEvent = sections
+                .LastOrDefault(o => o.QualificationForEvent != null)
+                ?.QualificationForEvent;
+            if (
+                !String.IsNullOrWhiteSpace(qualificationForEvent)
+                && bool.TryParse(
+                    qualificationForEvent,
+                    out var qualificationForEventValue
+                )
+            )
+            {
+                this.QualificationForEvent =
+                    qualificationForEventValue;
             }
         }
     }

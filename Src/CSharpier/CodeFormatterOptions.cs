@@ -7,6 +7,7 @@ public class CodeFormatterOptions
     public int IndentSize { get; init; } = 4;
     public EndOfLine EndOfLine { get; init; } = EndOfLine.Auto;
     public bool IncludeGenerated { get; init; }
+
     public BraceNewLine NewLineBeforeOpenBrace { get; init; } = BraceNewLine.All;
     public bool NewLineBeforeElse { get; init; } = true;
     public bool NewLineBeforeCatch { get; init; } = true;
@@ -14,6 +15,12 @@ public class CodeFormatterOptions
     public bool? NewLineBeforeMembersInObjectInitializers { get; init; } = null;
     public bool? NewLineBeforeMembersInAnonymousTypes { get; init; } = null;
     public bool? NewLineBetweenQueryExpressionClauses { get; init; } = null;
+
+    public bool? QualificationForField { get; init; } = null;
+    public bool? QualificationForProperty { get; init; } = null;
+    public bool? QualificationForMethod { get; init; } = null;
+    public bool? QualificationForEvent { get; init; } = null;
+
     public bool UsePrettierStyleTrailingCommas { get; init; } = true;
 }
 

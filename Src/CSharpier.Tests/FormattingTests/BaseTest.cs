@@ -61,6 +61,12 @@ public class BaseTest
                     options.NewLineBeforeMembersInObjectInitializers,
                 NewLineBeforeMembersInAnonymousTypes = options.NewLineBeforeMembersInAnonymousTypes,
                 NewLineBetweenQueryExpressionClauses = options.NewLineBetweenQueryExpressionClauses,
+
+                QualificationForField = options.QualificationForField,
+                QualificationForProperty = options.QualificationForProperty,
+                QualificationForMethod = options.QualificationForMethod,
+                QualificationForEvent = options.QualificationForEvent,
+
                 UsePrettierStyleTrailingCommas = options.UsePrettierStyleTrailingCommas,
             };
         }

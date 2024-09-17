@@ -12,6 +12,7 @@ internal class Section
     public string? MaxLineLength { get; }
     public string? EndOfLine { get; }
     public string? Formatter { get; }
+
     public string? NewLineBeforeOpenBrace { get; }
     public string? NewLineBeforeElse { get; }
     public string? NewLineBeforeCatch { get; }
@@ -19,6 +20,11 @@ internal class Section
     public string? NewLineBeforeMembersInObjectInitializers { get; }
     public string? NewLineBeforeMembersInAnonymousTypes { get; }
     public string? NewLineBetweenQueryExpressionClauses { get; }
+
+    public string? QualificationForField { get; }
+    public string? QualificationForProperty { get; }
+    public string? QualificationForMethod { get; }
+    public string? QualificationForEvent { get; }
 
     public Section(SectionData section, string directory)
     {
@@ -42,6 +48,11 @@ internal class Section
         this.NewLineBetweenQueryExpressionClauses = section.Keys[
             "csharp_new_line_between_query_expression_clauses"
         ];
+
+        this.QualificationForField = section.Keys["dotnet_style_qualification_for_field"];
+        this.QualificationForProperty = section.Keys["dotnet_style_qualification_for_property"];
+        this.QualificationForMethod = section.Keys["dotnet_style_qualification_for_method"];
+        this.QualificationForEvent = section.Keys["dotnet_style_qualification_for_event"];
     }
 
     public bool IsMatch(string fileName)

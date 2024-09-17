@@ -62,6 +62,9 @@
     <Content Remove="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_False.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_Null.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_True.expected.test" />
+    <Content Remove="FormattingTests\TestFiles\cs\QualificationForField_False.expected.test" />
+    <Content Remove="FormattingTests\TestFiles\cs\QualificationForField_Null.expected.test" />
+    <Content Remove="FormattingTests\TestFiles\cs\QualificationForField_True.expected.test" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="FormattingTests\TestFiles\cs\NewLineBefore_Catch_KeR.expected.test" />
@@ -154,6 +157,15 @@
     <None Remove="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_True.expected.test" />
     <None Remove="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_True.printerOptions.json" />
     <None Remove="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_True.test" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForField_False.expected.test" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForField_False.printerOptions.json" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForField_False.test" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForField_Null.expected.test" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForField_Null.printerOptions.json" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForField_Null.test" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForField_True.expected.test" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForField_True.printerOptions.json" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForField_True.test" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBefore_MembersInAnonymousTypes_False.printerOptions.json" />
@@ -165,6 +177,9 @@
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_AnonymousTypes_KeR_NoTrailingCommas.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_ObjectCollectionArrayInitializers_KeR_NoTrailingCommas.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_Allman.printerOptions.json" />
+    <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForField_Null.printerOptions.json" />
+    <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForField_False.printerOptions.json" />
+    <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForField_True.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_Null.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_False.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_True.printerOptions.json" />

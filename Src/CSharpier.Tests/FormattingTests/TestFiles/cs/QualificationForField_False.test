@@ -1,0 +1,10 @@
+﻿public class ClassName
+{
+    public int Value;
+
+    public void UpdateValue()
+    {
+        Value = 2;
+        this.Value++;
+    }
+}

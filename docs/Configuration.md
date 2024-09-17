@@ -14,6 +14,7 @@ The configuration file will be resolved based on the location of the file being 
 In `csharpier-config` we added some [C# formatting options](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/csharp-formatting-options). For now
 
 - [New-line options](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/csharp-formatting-options#new-line-options)
+- [this and Me preferences](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0003-ide0009)
 
 An other implementation is:
 
@@ -36,6 +37,12 @@ JSON
     "newLineBeforeMembersInObjectInitializers": null,
     "newLineBeforeMembersInAnonymousTypes": null,
     "newLineBetweenQueryExpressionClauses": true,
+
+    "qualificationForField": null,
+    "qualificationForProperty": null,
+    "qualificationForMethod": null,
+    "qualificationForEvent": null,
+
     "usePrettierStyleTrailingCommas": true
 }
 ```
@@ -53,6 +60,12 @@ newLineBeforeFinally: true
 newLineBeforeMembersInObjectInitializers: null
 newLineBeforeMembersInAnonymousTypes: null
 newLineBetweenQueryExpressionClauses: true
+
+qualificationForField: null
+qualificationForProperty: null
+qualificationForMethod: null
+qualificationForEvent: null
+
 usePrettierStyleTrailingCommas: true
 ```
 
@@ -298,6 +311,12 @@ dotnet_separate_import_directive_groups = false
 indent_style = space
 indent_size = 4
 max_line_length = 100
+
+[*.{cs,vb}]
+dotnet_style_qualification_for_field = true
+dotnet_style_qualification_for_property = true
+dotnet_style_qualification_for_method = true
+dotnet_style_qualification_for_event = true
 ```
 
 _First available in 0.29.2_

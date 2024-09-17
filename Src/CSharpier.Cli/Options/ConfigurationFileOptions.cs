@@ -20,6 +20,12 @@ internal class ConfigurationFileOptions
     public bool? NewLineBeforeMembersInObjectInitializers { get; init; } = null;
     public bool? NewLineBeforeMembersInAnonymousTypes { get; init; } = null;
     public bool? NewLineBetweenQueryExpressionClauses { get; init; } = null;
+
+    public bool? QualificationForField { get; init; } = null;
+    public bool? QualificationForProperty { get; init; } = null;
+    public bool? QualificationForMethod { get; init; } = null;
+    public bool? QualificationForEvent { get; init; } = null;
+
     public bool UsePrettierStyleTrailingCommas { get; init; } = true;
 
     public Override[] Overrides { get; init; } = [];
@@ -48,6 +54,12 @@ internal class ConfigurationFileOptions
                     matchingOverride.NewLineBeforeMembersInAnonymousTypes,
                 NewLineBetweenQueryExpressionClauses =
                     matchingOverride.NewLineBetweenQueryExpressionClauses,
+
+                QualificationForField = matchingOverride.QualificationForField,
+                QualificationForProperty = matchingOverride.QualificationForProperty,
+                QualificationForMethod = matchingOverride.QualificationForMethod,
+                QualificationForEvent  = matchingOverride.QualificationForEvent,
+
                 UsePrettierStyleTrailingCommas = matchingOverride.UsePrettierStyleTrailingCommas,
             };
         }
@@ -70,6 +82,12 @@ internal class ConfigurationFileOptions
                     this.NewLineBeforeMembersInObjectInitializers,
                 NewLineBeforeMembersInAnonymousTypes = this.NewLineBeforeMembersInAnonymousTypes,
                 NewLineBetweenQueryExpressionClauses = this.NewLineBetweenQueryExpressionClauses,
+
+                QualificationForField = this.QualificationForField,
+                QualificationForProperty = this.QualificationForProperty,
+                QualificationForMethod = this.QualificationForMethod,
+                QualificationForEvent = this.QualificationForEvent,
+
                 UsePrettierStyleTrailingCommas = this.UsePrettierStyleTrailingCommas,
             };
         }
@@ -105,6 +123,12 @@ internal class Override
     public bool? NewLineBeforeMembersInObjectInitializers { get; init; } = null;
     public bool? NewLineBeforeMembersInAnonymousTypes { get; init; } = null;
     public bool? NewLineBetweenQueryExpressionClauses { get; init; } = null;
+
+    public bool? QualificationForField { get; init; } = null;
+    public bool? QualificationForProperty { get; init; } = null;
+    public bool? QualificationForMethod { get; init; } = null;
+    public bool? QualificationForEvent { get; init; } = null;
+
     public bool UsePrettierStyleTrailingCommas { get; init; } = true;
 
     public string Files { get; init; } = string.Empty;

@@ -24,6 +24,14 @@ CSharpier.CodeFormatterOptions.NewLineBeforeMembersInAnonymousTypes.get -> bool?
 CSharpier.CodeFormatterOptions.NewLineBeforeMembersInAnonymousTypes.init -> void
 CSharpier.CodeFormatterOptions.NewLineBetweenQueryExpressionClauses.get -> bool?
 CSharpier.CodeFormatterOptions.NewLineBetweenQueryExpressionClauses.init -> void
+CSharpier.CodeFormatterOptions.QualificationForField.get -> bool?
+CSharpier.CodeFormatterOptions.QualificationForField.init -> void
+CSharpier.CodeFormatterOptions.QualificationForProperty.get -> bool?
+CSharpier.CodeFormatterOptions.QualificationForProperty.init -> void
+CSharpier.CodeFormatterOptions.QualificationForMethod.get -> bool?
+CSharpier.CodeFormatterOptions.QualificationForMethod.init -> void
+CSharpier.CodeFormatterOptions.QualificationForEvent.get -> bool?
+CSharpier.CodeFormatterOptions.QualificationForEvent.init -> void
 CSharpier.CodeFormatterOptions.UsePrettierStyleTrailingCommas.get -> bool
 CSharpier.CodeFormatterOptions.UsePrettierStyleTrailingCommas.init -> void
 CSharpier.CodeFormatterResult
