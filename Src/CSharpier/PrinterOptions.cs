@@ -19,6 +19,12 @@ internal class PrinterOptions
     public bool? NewLineBeforeMembersInObjectInitializers { get; set; } = null;
     public bool? NewLineBeforeMembersInAnonymousTypes { get; set; } = null;
     public bool? NewLineBetweenQueryExpressionClauses { get; set; } = null;
+
+    public bool? QualificationForField { get; set; } = null;
+    public bool? QualificationForProperty { get; set; } = null;
+    public bool? QualificationForMethod { get; set; } = null;
+    public bool? QualificationForEvent { get; set; } = null;
+
     public bool UsePrettierStyleTrailingCommas { get; set; } = true;
 
     public const int WidthUsedByTests = 100;

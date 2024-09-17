@@ -14,6 +14,9 @@ internal static class BaseFieldDeclaration
             docs.Add(Token.PrintWithSuffix(eventFieldDeclarationSyntax.EventKeyword, " ", context));
         }
 
+        // TODO: Fabio: Save field name
+        // node.Declaration.Variables[0].ToString()
+
         docs.Add(
             VariableDeclaration.Print(node.Declaration, context),
             Token.Print(node.SemicolonToken, context)

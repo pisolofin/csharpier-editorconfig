@@ -72,6 +72,7 @@ public string Example
                     LineEnding = Environment.NewLine,
                     IndentSize = 4,
                     UseTabs = false,
+
                     NewLineBeforeOpenBrace = BraceNewLine.All,
                     NewLineBeforeElse = true,
                     NewLineBeforeCatch = true,
@@ -79,6 +80,12 @@ public string Example
                     NewLineBeforeMembersInObjectInitializers = null,
                     NewLineBeforeMembersInAnonymousTypes = null,
                     NewLineBetweenQueryExpressionClauses = null,
+
+                    QualificationForField = null,
+                    QualificationForProperty = null,
+                    QualificationForMethod = null,
+                    QualificationForEvent = null,
+
                     UsePrettierStyleTrailingCommas = true,
                 }
             )

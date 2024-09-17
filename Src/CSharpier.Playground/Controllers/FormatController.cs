@@ -58,6 +58,12 @@ public class FormatController : ControllerBase
         public bool? NewLineBeforeMembersInObjectInitializers { get; set; } = null;
         public bool? NewLineBeforeMembersInAnonymousTypes { get; set; } = null;
         public bool? NewLineBetweenQueryExpressionClauses { get; set; } = null;
+
+        public bool? QualificationForField { get; set; } = null;
+        public bool? QualificationForProperty { get; set; } = null;
+        public bool? QualificationForMethod { get; set; } = null;
+        public bool? QualificationForEvent { get; set; } = null;
+
         public bool UsePrettierStyleTrailingCommas { get; set; } = true;
     }
 
@@ -88,6 +94,12 @@ public class FormatController : ControllerBase
                     model.NewLineBeforeMembersInObjectInitializers,
                 NewLineBeforeMembersInAnonymousTypes = model.NewLineBeforeMembersInAnonymousTypes,
                 NewLineBetweenQueryExpressionClauses = model.NewLineBetweenQueryExpressionClauses,
+
+                QualificationForField = model.QualificationForField,
+                QualificationForProperty = model.QualificationForProperty,
+                QualificationForMethod = model.QualificationForMethod,
+                QualificationForEvent = model.QualificationForEvent,
+
                 UsePrettierStyleTrailingCommas = model.UsePrettierStyleTrailingCommas,
             },
             sourceCodeKind,

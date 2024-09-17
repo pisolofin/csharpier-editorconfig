@@ -13,10 +13,16 @@ internal class FormattingContext
     public required bool NewLineBeforeElse { get; init; }
     public required bool NewLineBeforeCatch { get; init; }
     public required bool NewLineBeforeFinally { get; init; }
-    public required bool? NewLineBeforeMembersInObjectInitializers { get; set; }
-    public required bool? NewLineBeforeMembersInAnonymousTypes { get; set; }
-    public required bool? NewLineBetweenQueryExpressionClauses { get; set; }
-    public required bool UsePrettierStyleTrailingCommas { get; set; }
+    public required bool? NewLineBeforeMembersInObjectInitializers { get; init; }
+    public required bool? NewLineBeforeMembersInAnonymousTypes { get; init; }
+    public required bool? NewLineBetweenQueryExpressionClauses { get; init; }
+
+    public bool? QualificationForField { get; init; }
+    public bool? QualificationForProperty { get; init; }
+    public bool? QualificationForMethod { get; init; }
+    public bool? QualificationForEvent { get; init; }
+
+    public required bool UsePrettierStyleTrailingCommas { get; init; }
 
     // TODO the rest of these go into State
     // context.State.PrintingDepth

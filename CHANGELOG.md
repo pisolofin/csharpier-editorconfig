@@ -1,3 +1,21 @@
+# 0.29.2.2
+## What's Changed
+### Add or remove this or Me qualification
+
+```c#
+// dotnet_style_qualification_for_field = true
+this.capacity = 0;
+
+// dotnet_style_qualification_for_field = false
+capacity = 0;
+```
+
+Support for 
+- `dotnet_style_qualification_for_field`
+- `dotnet_style_qualification_for_property`
+- `dotnet_style_qualification_for_method`
+- `dotnet_style_qualification_for_event`
+
 # 0.29.2
 ## What's Changed
 ### Comments don't follow tabs indent style [#1343](https://github.com/belav/csharpier/issues/1343)
@@ -89,7 +107,7 @@ CSharpier Server now uses a log file name based on the port that it is starting 
 
 **Full Changelog**: https://github.com/belav/csharpier/compare/0.29.0...0.29.1
 # 0.29.0.1
- Support to all [C# formatting options](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/csharp-formatting-options) into `.editorconfig` file
+Support to all [C# formatting options](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/csharp-formatting-options) into `.editorconfig` file
 # 0.29.0
 ## Breaking Changes
 ### The formatting command will now exit with an error code of 1 if one of the target files cannot be compiled [#1131](https://github.com/belav/csharpier/issues/1131)
