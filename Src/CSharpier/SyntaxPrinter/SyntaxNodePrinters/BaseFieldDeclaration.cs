@@ -15,7 +15,9 @@ internal static class BaseFieldDeclaration
         }
 
         // TODO: Fabio: Save field name
-        // node.Declaration.Variables[0].ToString()
+        // Compute the field name
+        var variable = node.Declaration.Variables[0];
+        var fieldName = Token.Print(variable.Identifier, context).ToString();
 
         docs.Add(
             VariableDeclaration.Print(node.Declaration, context),

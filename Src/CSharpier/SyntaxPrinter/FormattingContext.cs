@@ -29,6 +29,7 @@ internal class FormattingContext
     public int PrintingDepth { get; set; }
     public bool NextTriviaNeedsLine { get; set; }
     public bool SkipNextLeadingTrivia { get; set; }
+    public FormattingContextState State { get; } = new FormattingContextState();
 
     // we need to keep track if we reordered modifiers because when modifiers are moved inside
     // of an #if, then we can't compare the before and after disabled text in the source file
@@ -42,4 +43,9 @@ internal class FormattingContext
         this.SkipNextLeadingTrivia = true;
         return this;
     }
+}
+
+internal class FormattingContextState
+{
+
 }
