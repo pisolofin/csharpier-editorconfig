@@ -6,7 +6,7 @@
 [![NuGet Version](https://img.shields.io/nuget/v/CSharpier-Config?style=flat&color=blue)](https://www.nuget.org/packages/CSharpier-Config/)
 
 
-This is as non opinionated version of [csharpier](https://github.com/belav/csharpier) version 0.29.1 tool created to add EditorConfig file style guide, allowing users to define and apply custom styling options.
+This is as non opinionated version of [csharpier](https://github.com/belav/csharpier) version 0.29.2 tool created to add EditorConfig file style guide, allowing users to define and apply custom styling options.
 
 All documentation that you find about csharpier is also valid for csharpier-config, you have only to change command like
 All documentation you find about `CSharpier` is also valid for `CSharpier-Config`. You only need to adjust the commands accordingly.

@@ -37,9 +37,10 @@ public class BaseTest
                 new FileSystem(),
                 CancellationToken.None
             );
-            var options = System.Text.Json.JsonSerializer.Deserialize<CSharpier.Cli.Options.Override>(
-                printerOptionsReaderResult.FileContents
-            );
+            var options =
+                System.Text.Json.JsonSerializer.Deserialize<CSharpier.Cli.Options.Override>(
+                    printerOptionsReaderResult.FileContents
+                );
             options ??= new CSharpier.Cli.Options.Override
             {
                 TabWidth = PrinterOptions.WidthUsedByTests,

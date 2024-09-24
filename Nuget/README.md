@@ -1,4 +1,4 @@
-This is as non opinionated version of [csharpier](https://github.com/belav/csharpier) version 0.29.1 tool created to add EditorConfig file style guide, allowing users to define and apply custom styling options.
+This is as non opinionated version of [csharpier](https://github.com/belav/csharpier) version 0.29.2 tool created to add EditorConfig file style guide, allowing users to define and apply custom styling options.
 
 ### Quick Start
 Install CSharpier-Config globally using the following command.

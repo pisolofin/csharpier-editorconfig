@@ -220,7 +220,10 @@ internal class EditorConfigSections
     {
         // Convert the string to a list of enum values
         BraceNewLine result = BraceNewLine.None;
-        string[] values = input.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        string[] values = input.Split(
+            ',',
+            StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries
+        );
 
         foreach (var value in values)
         {
