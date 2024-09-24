@@ -11,15 +11,19 @@ internal class EditorConfigSections
 
     public PrinterOptions? ConvertToPrinterOptions(string filePath)
     {
-        if (!(filePath.EndsWith(".cs") || filePath.EndsWith(".csx")))
+        var sections = this.SectionsIncludingParentFiles.Where(o => o.IsMatch(filePath)).ToList();
+        var resolvedConfiguration = new ResolvedConfiguration(sections);
+
+        var formatter =
+            resolvedConfiguration.Formatter
+            ?? (filePath.EndsWith(".cs") || filePath.EndsWith(".csx") ? "csharp" : null);
+
+        if (formatter == null)
         {
             return null;
         }
 
-        var sections = this.SectionsIncludingParentFiles.Where(o => o.IsMatch(filePath)).ToList();
-        var resolvedConfiguration = new ResolvedConfiguration(sections);
-
-        var printerOptions = new PrinterOptions { Formatter = "csharp" };
+        var printerOptions = new PrinterOptions { Formatter = formatter };
 
         if (resolvedConfiguration.MaxLineLength is { } maxLineLength)
         {
@@ -77,6 +81,7 @@ internal class EditorConfigSections
         public int? TabWidth { get; }
         public int? MaxLineLength { get; }
         public EndOfLine? EndOfLine { get; }
+        public string? Formatter { get; }
 
         public BraceNewLine? NewLineBeforeOpenBrace { get; }
         public bool? NewLineBeforeElse { get; }
@@ -129,6 +134,8 @@ internal class EditorConfigSections
             {
                 this.EndOfLine = result;
             }
+
+            this.Formatter = sections.LastOrDefault(o => o.Formatter is not null)?.Formatter;
 
             var newLineBeforeOpenBrace = sections
                 .LastOrDefault(o => o.NewLineBeforeOpenBrace != null)

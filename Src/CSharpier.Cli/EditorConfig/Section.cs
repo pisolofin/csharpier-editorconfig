@@ -11,6 +11,7 @@ internal class Section
     public string? TabWidth { get; }
     public string? MaxLineLength { get; }
     public string? EndOfLine { get; }
+    public string? Formatter { get; }
     public string? NewLineBeforeOpenBrace { get; }
     public string? NewLineBeforeElse { get; }
     public string? NewLineBeforeCatch { get; }
@@ -27,6 +28,7 @@ internal class Section
         this.TabWidth = section.Keys["tab_width"];
         this.MaxLineLength = section.Keys["max_line_length"];
         this.EndOfLine = section.Keys["end_of_line"];
+        this.Formatter = section.Keys["csharpier_formatter"];
         this.NewLineBeforeOpenBrace = section.Keys["csharp_new_line_before_open_brace"];
         this.NewLineBeforeElse = section.Keys["csharp_new_line_before_else"];
         this.NewLineBeforeCatch = section.Keys["csharp_new_line_before_catch"];
