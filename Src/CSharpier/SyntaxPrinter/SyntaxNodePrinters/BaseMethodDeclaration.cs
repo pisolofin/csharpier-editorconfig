@@ -6,6 +6,9 @@ internal static class BaseMethodDeclaration
 {
     public static Doc Print(CSharpSyntaxNode node, FormattingContext context)
     {
+        // TODO: Fabio: Add state context
+        context.State.AddContextState();
+
         SyntaxList<AttributeListSyntax>? attributeLists = null;
         SyntaxTokenList? modifiers = null;
         TypeSyntax? returnType = null;
@@ -244,6 +247,9 @@ internal static class BaseMethodDeclaration
         {
             docs.Add(Token.Print(semicolonToken.Value, context));
         }
+
+        // TODO: Fabio: Add state context
+        context.State.Pop();
 
         return Doc.Group(docs);
     }

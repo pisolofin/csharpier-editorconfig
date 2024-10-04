@@ -8,8 +8,8 @@
 
     public void UpdateValue()
     {
-        Value = 2;
-        this.Value++;
+        FieldValue = 2;
+        this.FieldValue++;
 
         PropertyValue = 3;
         this.PropertyValue++;

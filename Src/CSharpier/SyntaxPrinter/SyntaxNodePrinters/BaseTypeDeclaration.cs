@@ -4,6 +4,9 @@ internal static class BaseTypeDeclaration
 {
     public static Doc Print(BaseTypeDeclarationSyntax node, FormattingContext context)
     {
+        // TODO: Fabio: Add state context
+        context.State.AddContextState();
+
         ParameterListSyntax? parameterList = null;
         TypeParameterListSyntax? typeParameterList = null;
         var constraintClauses = Enumerable.Empty<TypeParameterConstraintClauseSyntax>();
@@ -161,6 +164,9 @@ internal static class BaseTypeDeclaration
         {
             docs.Add(Token.Print(semicolonToken.Value, context));
         }
+
+        // TODO: Fabio: Add state context
+        context.State.Pop();
 
         return Doc.Concat(docs);
     }
