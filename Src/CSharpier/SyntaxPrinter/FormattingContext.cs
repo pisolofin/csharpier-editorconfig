@@ -1,3 +1,5 @@
+using System.Xml.Linq;
+
 namespace CSharpier.SyntaxPrinter;
 
 // TODO rename this to PrintingContext
@@ -29,7 +31,7 @@ internal class FormattingContext
     public int PrintingDepth { get; set; }
     public bool NextTriviaNeedsLine { get; set; }
     public bool SkipNextLeadingTrivia { get; set; }
-    public FormattingContextState State { get; } = new FormattingContextState();
+    public Stack<FormattingContextState> State { get; } = new Stack<FormattingContextState>();
 
     // we need to keep track if we reordered modifiers because when modifiers are moved inside
     // of an #if, then we can't compare the before and after disabled text in the source file
@@ -57,5 +59,9 @@ internal class FormattingContext
 
 internal class FormattingContextState
 {
+    public FormattingContextState? Parent { get; set; } = null;
 
+    public List<VariableDeclaratorSyntax> FieldList = new List<VariableDeclaratorSyntax>();
+    public List<MemberDeclarationSyntax> PropertyList = new List<MemberDeclarationSyntax>();
+    public List<VariableDeclaratorSyntax> EventList = new List<VariableDeclaratorSyntax>();
 }
