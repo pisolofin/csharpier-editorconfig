@@ -5,8 +5,7 @@ internal static class BasePropertyDeclaration
     public static Doc Print(BasePropertyDeclarationSyntax node, FormattingContext context)
     {
         // TODO: Fabio: Save field name
-        // Compute the field name
-        context.State.Peek().PropertyList.Add(node);
+        context.State.AddContextReference(node);
 
         EqualsValueClauseSyntax? initializer = null;
         ExplicitInterfaceSpecifierSyntax? explicitInterfaceSpecifierSyntax = null;

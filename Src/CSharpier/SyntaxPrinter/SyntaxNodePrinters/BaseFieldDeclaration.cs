@@ -5,17 +5,7 @@ internal static class BaseFieldDeclaration
     public static Doc Print(BaseFieldDeclarationSyntax node, FormattingContext context)
     {
         // TODO: Fabio: Save field name
-        // Compute the field name
-        var variable = node.Declaration.Variables[0];
-        var fieldName = Token.Print(variable.Identifier, context).ToString();
-        if (node is EventFieldDeclarationSyntax)
-        {
-            context.State.Peek().EventList.Add(variable);
-        }
-        else
-        {
-            context.State.Peek().FieldList.Add(variable);
-        }
+        context.State.AddContextReference(node);
 
         var docs = new List<Doc>
         {

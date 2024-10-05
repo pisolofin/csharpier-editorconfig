@@ -1,7 +1,16 @@
 ﻿using CSharpier.SyntaxPrinter;
-using System.Linq;
 
 namespace CSharpier.Utilities;
+
+internal enum ContextReferenceType
+{
+    None,
+    Field,
+    Property,
+    Event
+}
+
+internal record ContextReferenceLevel(ContextReferenceType ReferenceType, int Level);
 
 internal static class PrintingContextExtensions
 {
@@ -17,25 +26,29 @@ internal static class PrintingContextExtensions
         return currentState;
     }
 
-    public static int LocalContextReferenceLevel(this Stack<FormattingContextState> contextState, IdentifierNameSyntax identifier)
+    public static ContextReferenceLevel LocalContextReferenceLevel(this Stack<FormattingContextState> contextState, IdentifierNameSyntax identifier)
     {
         // Convert to Array to check every State
         var contextStateArray = contextState.ToArray();
         for (var contextIndex = 0; contextIndex < contextStateArray.Length; contextIndex++)
         {
             var currentState = contextStateArray[contextIndex];
-            if (
-                currentState.FieldList.HasContextReference(identifier) ||
-                currentState.PropertyList.HasContextReference(identifier) ||
-                currentState.EventList.HasContextReference(identifier)
-            )
+            if (currentState.FieldList.HasContextReference(identifier))
             {
-                return contextIndex;
+                return new ContextReferenceLevel(ContextReferenceType.Field, contextIndex);
+            }
+            if (currentState.PropertyList.HasContextReference(identifier))
+            {
+                return new ContextReferenceLevel(ContextReferenceType.Property, contextIndex);
+            }
+            if (currentState.EventList.HasContextReference(identifier))
+            {
+                return new ContextReferenceLevel(ContextReferenceType.Event, contextIndex);
             }
         }
 
         // Not found
-        return -1;
+        return new ContextReferenceLevel(ContextReferenceType.None, -1);
     }
 
     public static bool HasContextReference(this IEnumerable<VariableDeclaratorSyntax> syntaxList, IdentifierNameSyntax identifier)
@@ -46,5 +59,23 @@ internal static class PrintingContextExtensions
     public static bool HasContextReference(this IEnumerable<MemberDeclarationSyntax> syntaxList, IdentifierNameSyntax identifier)
     {
         return syntaxList.Any(syntax => (syntax as PropertyDeclarationSyntax)?.Identifier.Text == identifier.Identifier.Text);
+    }
+
+    public static void AddContextReference(this Stack<FormattingContextState> contextState, BaseFieldDeclarationSyntax fieldDeclaration)
+    {
+        var variable = fieldDeclaration.Declaration.Variables[0];
+        if (fieldDeclaration is EventFieldDeclarationSyntax)
+        {
+            contextState.Peek().EventList.Add(variable);
+        }
+        else
+        {
+            contextState.Peek().FieldList.Add(variable);
+        }
+    }
+
+    public static void AddContextReference(this Stack<FormattingContextState> contextState, BasePropertyDeclarationSyntax propertyDeclaration)
+    {
+        contextState.Peek().PropertyList.Add(propertyDeclaration);
     }
 }
