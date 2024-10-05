@@ -8,13 +8,19 @@
 
     public void UpdateValue()
     {
-        this.Value = 2;
-        this.Value++;
+        this.FieldValue = 2;
+        this.FieldValue++;
 
         PropertyValue = 3;
         this.PropertyValue++;
 
         SampleEvent?.Invoke(this, new SampleEventArgs("Hello"));
         this.SampleEvent?.Invoke(this, new SampleEventArgs("World"));
+
+        var localVar = 0;
+        localVar = 4;
+
+        int localVarB;
+        localVarB = 5;
     }
 }

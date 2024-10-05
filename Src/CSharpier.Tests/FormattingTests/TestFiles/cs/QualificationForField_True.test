@@ -16,5 +16,11 @@
 
         SampleEvent?.Invoke(this, new SampleEventArgs("Hello"));
         this.SampleEvent?.Invoke(this, new SampleEventArgs("World"));
+
+        var localVar = 0;
+        localVar = 4;
+
+        int localVarB;
+        localVarB = 5;
     }
 }

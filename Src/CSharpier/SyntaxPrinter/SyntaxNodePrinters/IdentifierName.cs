@@ -9,16 +9,22 @@ internal static class IdentifierName
         // TODO: Fabio: Check if parent is AssignmentExpressionSyntax SimpleAssignmentExpression Value = 2
         if (node.Parent is AssignmentExpressionSyntax)
         {
-            if (context.State.LocalContextReferenceLevel(node) > 0)
+            var contextReferenceLevel = context.State.LocalContextReferenceLevel(node);
+
+            if (
+                ((context.QualificationForField ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Field)) ||
+                ((context.QualificationForProperty ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Property)) ||
+                ((context.QualificationForEvent ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Event))
+            )
             {
                 return Doc.Group(
-                    "ciao.",
+                    Constants.ThisQualification,
+                    Constants.ThingsSeparator,
                     Token.Print(node.Identifier, context)
                 );
             }
 
             return Doc.Group(
-                "no.",
                 Token.Print(node.Identifier, context)
             );
         }
