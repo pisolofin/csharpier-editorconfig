@@ -9,9 +9,11 @@
     public void UpdateValue()
     {
         FieldValue = 2;
+        this.FieldValue = 21;
         this.FieldValue++;
 
         PropertyValue = 3;
+        this.PropertyValue = 32;
         this.PropertyValue++;
 
         SampleEvent?.Invoke(this, new SampleEventArgs("Hello"));
@@ -22,5 +24,6 @@
 
         int localVarB;
         localVarB = 5;
+        localVarB++;
     }
 }

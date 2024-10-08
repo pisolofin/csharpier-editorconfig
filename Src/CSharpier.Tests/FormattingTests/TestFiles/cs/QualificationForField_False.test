@@ -1,10 +1,29 @@
 ﻿public class ClassName
 {
-    public int Value;
+    public delegate void SampleEventHandler(object sender, SampleEventArgs e);
+
+    public int FieldValue;
+    public int PropertyValue { get; set; }
+    public event SampleEventHandler SampleEvent;
 
     public void UpdateValue()
     {
-        Value = 2;
-        this.Value++;
+        FieldValue = 2;
+        this.FieldValue = 21;
+        this.FieldValue++;
+
+        PropertyValue = 3;
+        this.PropertyValue = 32;
+        this.PropertyValue++;
+
+        SampleEvent?.Invoke(this, new SampleEventArgs("Hello"));
+        this.SampleEvent?.Invoke(this, new SampleEventArgs("World"));
+
+        var localVar = 0;
+        localVar = 4;
+
+        int localVarB;
+        localVarB = 5;
+        localVarB++;
     }
 }

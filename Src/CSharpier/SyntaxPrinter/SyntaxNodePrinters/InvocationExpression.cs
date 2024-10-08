@@ -156,16 +156,42 @@ internal static class InvocationExpression
         }
         else if (expression is MemberAccessExpressionSyntax memberAccessExpressionSyntax)
         {
-            FlattenAndPrintNodes(memberAccessExpressionSyntax.Expression, printedNodes, context);
-            printedNodes.Add(
-                new PrintedNode(
-                    memberAccessExpressionSyntax,
-                    Doc.Concat(
-                        Token.Print(memberAccessExpressionSyntax.OperatorToken, context),
-                        Node.Print(memberAccessExpressionSyntax.Name, context)
-                    )
+            bool nodePrinted = false;
+
+            if (memberAccessExpressionSyntax.Name is IdentifierNameSyntax identifierNode)
+            {
+                var contextReferenceLevel = context.State.LocalContextReferenceLevel(identifierNode);
+
+                if (
+                    (!(context.QualificationForField ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Field)) ||
+                    (!(context.QualificationForProperty ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Property)) ||
+                    (!(context.QualificationForEvent ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Event))
                 )
-            );
+                {
+                    printedNodes.Add(
+                        new PrintedNode(
+                            memberAccessExpressionSyntax,
+                            Node.Print(memberAccessExpressionSyntax.Name, context)
+                        )
+                    );
+
+                    nodePrinted = true;
+                }
+            }
+
+            if (!nodePrinted)
+            {
+                FlattenAndPrintNodes(memberAccessExpressionSyntax.Expression, printedNodes, context);
+                printedNodes.Add(
+                    new PrintedNode(
+                        memberAccessExpressionSyntax,
+                        Doc.Concat(
+                            Token.Print(memberAccessExpressionSyntax.OperatorToken, context),
+                            Node.Print(memberAccessExpressionSyntax.Name, context)
+                        )
+                    )
+                );
+            }
         }
         else if (expression is ConditionalAccessExpressionSyntax conditionalAccessExpressionSyntax)
         {
