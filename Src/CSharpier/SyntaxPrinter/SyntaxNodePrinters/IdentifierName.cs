@@ -17,11 +17,12 @@ internal static class IdentifierName
                 ((context.QualificationForEvent ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Event))
             )
             {
-                return Doc.Group(
-                    Constants.ThisQualification,
-                    Constants.ThingsSeparator,
-                    Token.Print(node.Identifier, context)
+                var memberAccessExpression = SyntaxFactory.MemberAccessExpression(
+                    SyntaxKind.SimpleMemberAccessExpression,
+                    SyntaxFactory.ThisExpression(),
+                    node
                 );
+                return MemberAccessExpression.Print(memberAccessExpression, context);
             }
 
             return Doc.Group(
