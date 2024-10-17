@@ -7,7 +7,7 @@ internal static class IdentifierName
     public static Doc Print(IdentifierNameSyntax node, FormattingContext context)
     {
         // TODO: Fabio: Check if parent is AssignmentExpressionSyntax SimpleAssignmentExpression Value = 2
-        if (node.Parent is AssignmentExpressionSyntax)
+        if (node.Parent is AssignmentExpressionSyntax or ConditionalAccessExpressionSyntax)
         {
             var contextReferenceLevel = context.State.LocalContextReferenceLevel(node);
 
