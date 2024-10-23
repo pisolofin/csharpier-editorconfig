@@ -3,6 +3,7 @@
 using CSharpier.Utilities;
 using FluentAssertions;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 public partial class OptionsProviderTests
 {
@@ -39,6 +40,15 @@ public partial class OptionsProviderTests
     [TestCase("NewLineBetweenQueryExpressionClauses", null)]
     [TestCase("UsePrettierStyleTrailingCommas", true)]
     [TestCase("UsePrettierStyleTrailingCommas", false)]
+    [TestCase("QualificationForField", true)]
+    [TestCase("QualificationForField", false)]
+    [TestCase("QualificationForField", null)]
+    [TestCase("QualificationForProperty", true)]
+    [TestCase("QualificationForProperty", false)]
+    [TestCase("QualificationForProperty", null)]
+    [TestCase("QualificationForMethod", true)]
+    [TestCase("QualificationForMethod", false)]
+    [TestCase("QualificationForMethod", null)]
     [TestCase("QualificationForEvent", true)]
     [TestCase("QualificationForEvent", false)]
     [TestCase("QualificationForEvent", null)]
@@ -101,6 +111,15 @@ public partial class OptionsProviderTests
     [TestCase("NewLineBetweenQueryExpressionClauses", null)]
     [TestCase("UsePrettierStyleTrailingCommas", true)]
     [TestCase("UsePrettierStyleTrailingCommas", false)]
+    [TestCase("QualificationForField", true)]
+    [TestCase("QualificationForField", false)]
+    [TestCase("QualificationForField", null)]
+    [TestCase("QualificationForProperty", true)]
+    [TestCase("QualificationForProperty", false)]
+    [TestCase("QualificationForProperty", null)]
+    [TestCase("QualificationForMethod", true)]
+    [TestCase("QualificationForMethod", false)]
+    [TestCase("QualificationForMethod", null)]
     [TestCase("QualificationForEvent", true)]
     [TestCase("QualificationForEvent", false)]
     [TestCase("QualificationForEvent", null)]
@@ -152,81 +171,34 @@ public partial class OptionsProviderTests
             .Be(BraceNewLine.Accessors | BraceNewLine.AnonymousMethods);
     }
 
-    [TestCase(true)]
-    [TestCase(false)]
-    public async Task Should_Support_EditorConfig_NewLineBeforeElse(bool value)
-    {
-        var context = new TestContext();
-        context.WhenAFileExists(
-            "c:/test/.editorconfig",
-            @"
-    [*]
-    csharp_new_line_before_else = "
-                + value.ToString().ToLower()
-                + @"
-    "
-        );
-
-        var result = await context.CreateProviderAndGetOptionsFor(
-            "c:/test/subfolder",
-            "c:/test/subfolder/test.cs",
-            limitEditorConfigSearch: true
-        );
-        result.NewLineBeforeElse.Should().Be(value);
-    }
-
-    [TestCase(true)]
-    [TestCase(false)]
-    public async Task Should_Support_EditorConfig_NewLineBeforeCatch(bool value)
-    {
-        var context = new TestContext();
-        context.WhenAFileExists(
-            "c:/test/.editorconfig",
-            @"
-    [*]
-    csharp_new_line_before_catch = "
-                + value.ToString().ToLower()
-                + @"
-    "
-        );
-
-        var result = await context.CreateProviderAndGetOptionsFor(
-            "c:/test/subfolder",
-            "c:/test/subfolder/test.cs",
-            limitEditorConfigSearch: true
-        );
-        result.NewLineBeforeCatch.Should().Be(value);
-    }
-
-    [TestCase(true)]
-    [TestCase(false)]
-    public async Task Should_Support_EditorConfig_NewLineBeforeFinally(bool value)
-    {
-        var context = new TestContext();
-        context.WhenAFileExists(
-            "c:/test/.editorconfig",
-            @"
-    [*]
-    csharp_new_line_before_finally = "
-                + value.ToString().ToLower()
-                + @"
-    "
-        );
-
-        var result = await context.CreateProviderAndGetOptionsFor(
-            "c:/test/subfolder",
-            "c:/test/subfolder/test.cs",
-            limitEditorConfigSearch: true
-        );
-        result.NewLineBeforeFinally.Should().Be(value);
-    }
-
-    [TestCase(true)]
-    [TestCase(false)]
-    [TestCase(null)]
-    public async Task Should_Support_EditorConfig_NewLineBeforeMembersInObjectInitializers(
-        bool? value
-    )
+    [TestCase("NewLineBeforeElse", "csharp_new_line_before_else", true)]
+    [TestCase("NewLineBeforeElse", "csharp_new_line_before_else", false)]
+    [TestCase("NewLineBeforeCatch", "csharp_new_line_before_catch", true)]
+    [TestCase("NewLineBeforeCatch", "csharp_new_line_before_catch", false)]
+    [TestCase("NewLineBeforeFinally", "csharp_new_line_before_finally", true)]
+    [TestCase("NewLineBeforeFinally", "csharp_new_line_before_finally", false)]
+    [TestCase("NewLineBeforeMembersInObjectInitializers", "csharp_new_line_before_members_in_object_initializers", true)]
+    [TestCase("NewLineBeforeMembersInObjectInitializers", "csharp_new_line_before_members_in_object_initializers", false)]
+    [TestCase("NewLineBeforeMembersInObjectInitializers", "csharp_new_line_before_members_in_object_initializers", null)]
+    [TestCase("NewLineBeforeMembersInAnonymousTypes", "csharp_new_line_before_members_in_anonymous_types", true)]
+    [TestCase("NewLineBeforeMembersInAnonymousTypes", "csharp_new_line_before_members_in_anonymous_types", false)]
+    [TestCase("NewLineBeforeMembersInAnonymousTypes", "csharp_new_line_before_members_in_anonymous_types", null)]
+    [TestCase("NewLineBetweenQueryExpressionClauses", "csharp_new_line_between_query_expression_clauses", true)]
+    [TestCase("NewLineBetweenQueryExpressionClauses", "csharp_new_line_between_query_expression_clauses", false)]
+    [TestCase("NewLineBetweenQueryExpressionClauses", "csharp_new_line_between_query_expression_clauses", null)]
+    [TestCase("QualificationForField", "dotnet_style_qualification_for_field", true)]
+    [TestCase("QualificationForField", "dotnet_style_qualification_for_field", false)]
+    [TestCase("QualificationForField", "dotnet_style_qualification_for_field", null)]
+    [TestCase("QualificationForProperty", "dotnet_style_qualification_for_property", true)]
+    [TestCase("QualificationForProperty", "dotnet_style_qualification_for_property", false)]
+    [TestCase("QualificationForProperty", "dotnet_style_qualification_for_property", null)]
+    [TestCase("QualificationForMethod", "dotnet_style_qualification_for_method", true)]
+    [TestCase("QualificationForMethod", "dotnet_style_qualification_for_method", false)]
+    [TestCase("QualificationForMethod", "dotnet_style_qualification_for_method", null)]
+    [TestCase("QualificationForEvent", "dotnet_style_qualification_for_event", true)]
+    [TestCase("QualificationForEvent", "dotnet_style_qualification_for_event", false)]
+    [TestCase("QualificationForEvent", "dotnet_style_qualification_for_event", null)]
+    public async Task Should_Support_EditorConfig(string propertyName, string editorconfigParameterName, bool? value)
     {
         var context = new TestContext();
 
@@ -234,11 +206,9 @@ public partial class OptionsProviderTests
         {
             context.WhenAFileExists(
                 "c:/test/.editorconfig",
-                @"
+                $@"
         [*]
-        csharp_new_line_before_members_in_object_initializers = "
-                    + value.Value.ToString().ToLower()
-                    + @"
+        {editorconfigParameterName} = {value.Value.ToString().ToLower()}
         "
             );
         }
@@ -248,62 +218,10 @@ public partial class OptionsProviderTests
             "c:/test/subfolder/test.cs",
             limitEditorConfigSearch: true
         );
-        result.NewLineBeforeMembersInObjectInitializers.Should().Be(value);
-    }
 
-    [TestCase(true)]
-    [TestCase(false)]
-    [TestCase(null)]
-    public async Task Should_Support_EditorConfig_NewLineBeforeMembersInAnonymousTypes(bool? value)
-    {
-        var context = new TestContext();
+        var propertyInfo = result.GetType().GetProperty(propertyName);
+        propertyInfo.Should().NotBeNull();
 
-        if (value.HasValue)
-        {
-            context.WhenAFileExists(
-                "c:/test/.editorconfig",
-                @"
-        [*]
-        csharp_new_line_before_members_in_anonymous_types = "
-                    + value.Value.ToString().ToLower()
-                    + @"
-        "
-            );
-        }
-
-        var result = await context.CreateProviderAndGetOptionsFor(
-            "c:/test/subfolder",
-            "c:/test/subfolder/test.cs",
-            limitEditorConfigSearch: true
-        );
-        result.NewLineBeforeMembersInAnonymousTypes.Should().Be(value);
-    }
-
-    [TestCase(true)]
-    [TestCase(false)]
-    [TestCase(null)]
-    public async Task Should_Support_EditorConfig_NewLineBetweenQueryExpressionClauses(bool? value)
-    {
-        var context = new TestContext();
-
-        if (value.HasValue)
-        {
-            context.WhenAFileExists(
-                "c:/test/.editorconfig",
-                @"
-        [*]
-        csharp_new_line_between_query_expression_clauses = "
-                    + value.Value.ToString().ToLower()
-                    + @"
-        "
-            );
-        }
-
-        var result = await context.CreateProviderAndGetOptionsFor(
-            "c:/test/subfolder",
-            "c:/test/subfolder/test.cs",
-            limitEditorConfigSearch: true
-        );
-        result.NewLineBetweenQueryExpressionClauses.Should().Be(value);
+        propertyInfo!.GetValue(result).Should().Be(value);
     }
 }

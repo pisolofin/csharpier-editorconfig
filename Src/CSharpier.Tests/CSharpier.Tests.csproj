@@ -68,10 +68,12 @@
     <Content Remove="FormattingTests\TestFiles\cs\QualificationForField_False.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\QualificationForField_Null.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\QualificationForField_True.expected.test" />
+    <Content Remove="FormattingTests\TestFiles\cs\QualificationForMethod_False.expected.test" />
+    <Content Remove="FormattingTests\TestFiles\cs\QualificationForMethod_Null.expected.test" />
+    <Content Remove="FormattingTests\TestFiles\cs\QualificationForMethod_True.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\QualificationForProperty_False.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\QualificationForProperty_Null - Copy.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\QualificationForProperty_Null.expected.test" />
-    <Content Remove="FormattingTests\TestFiles\cs\QualificationForProperty_True - Copy.expected.test" />
     <Content Remove="FormattingTests\TestFiles\cs\QualificationForProperty_True.expected.test" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +178,15 @@
     <None Remove="FormattingTests\TestFiles\cs\QualificationForField_True.expected.test" />
     <None Remove="FormattingTests\TestFiles\cs\QualificationForField_True.printerOptions.json" />
     <None Remove="FormattingTests\TestFiles\cs\QualificationForField_True.test" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForMethod_False.expected.test" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForMethod_False.printerOptions.json" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForMethod_False.test" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForMethod_Null.expected.test" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForMethod_Null.printerOptions.json" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForMethod_Null.test" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForMethod_True.expected.test" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForMethod_True.printerOptions.json" />
+    <None Remove="FormattingTests\TestFiles\cs\QualificationForMethod_True.test" />
     <None Remove="FormattingTests\TestFiles\cs\QualificationForProperty_False - Copy.test" />
     <None Remove="FormattingTests\TestFiles\cs\QualificationForProperty_False.expected.test" />
     <None Remove="FormattingTests\TestFiles\cs\QualificationForProperty_False.printerOptions.json" />
@@ -186,9 +197,6 @@
     <None Remove="FormattingTests\TestFiles\cs\QualificationForProperty_Null.expected.test" />
     <None Remove="FormattingTests\TestFiles\cs\QualificationForProperty_Null.printerOptions.json" />
     <None Remove="FormattingTests\TestFiles\cs\QualificationForProperty_Null.test" />
-    <None Remove="FormattingTests\TestFiles\cs\QualificationForProperty_True - Copy.expected.test" />
-    <None Remove="FormattingTests\TestFiles\cs\QualificationForProperty_True - Copy.printerOptions.json" />
-    <None Remove="FormattingTests\TestFiles\cs\QualificationForProperty_True - Copy.test" />
     <None Remove="FormattingTests\TestFiles\cs\QualificationForProperty_True.expected.test" />
     <None Remove="FormattingTests\TestFiles\cs\QualificationForProperty_True.printerOptions.json" />
     <None Remove="FormattingTests\TestFiles\cs\QualificationForProperty_True.test" />
@@ -204,10 +212,13 @@
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_ObjectCollectionArrayInitializers_KeR_NoTrailingCommas.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBefore_OpenBrace_Properties_Allman.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForEvent_False.printerOptions.json" />
+    <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForMethod_False.printerOptions.json" />
+    <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForMethod_Null.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForProperty_False.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForProperty_Null.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForField_Null.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForField_False.printerOptions.json" />
+    <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForMethod_True.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForProperty_True.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\QualificationForField_True.printerOptions.json" />
     <AdditionalFiles Include="FormattingTests\TestFiles\cs\NewLineBetween_QueryExpressionClauses_Null.printerOptions.json" />

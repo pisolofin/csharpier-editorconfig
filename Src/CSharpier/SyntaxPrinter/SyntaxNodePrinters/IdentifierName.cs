@@ -6,14 +6,14 @@ internal static class IdentifierName
 {
     public static Doc Print(IdentifierNameSyntax node, FormattingContext context)
     {
-        // TODO: Fabio: Check if parent is AssignmentExpressionSyntax SimpleAssignmentExpression Value = 2
-        if (node.Parent is AssignmentExpressionSyntax or ConditionalAccessExpressionSyntax)
+        if (node.Parent is AssignmentExpressionSyntax or ConditionalAccessExpressionSyntax or MemberAccessExpressionSyntax)
         {
             var contextReferenceLevel = context.State.LocalContextReferenceLevel(node);
 
             if (
                 ((context.QualificationForField ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Field)) ||
                 ((context.QualificationForProperty ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Property)) ||
+                ((context.QualificationForMethod ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Method)) ||
                 ((context.QualificationForEvent ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Event))
             )
             {

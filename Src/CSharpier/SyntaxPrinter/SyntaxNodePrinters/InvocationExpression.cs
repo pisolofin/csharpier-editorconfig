@@ -165,6 +165,7 @@ internal static class InvocationExpression
                 if (
                     (!(context.QualificationForField ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Field)) ||
                     (!(context.QualificationForProperty ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Property)) ||
+                    (!(context.QualificationForMethod ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Method)) ||
                     (!(context.QualificationForEvent ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Event))
                 )
                 {
