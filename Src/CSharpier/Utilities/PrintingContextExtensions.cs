@@ -7,6 +7,7 @@ internal enum ContextReferenceType
     None,
     Field,
     Property,
+    Method,
     Event
 }
 
@@ -77,5 +78,10 @@ internal static class PrintingContextExtensions
     public static void AddContextReference(this Stack<FormattingContextState> contextState, BasePropertyDeclarationSyntax propertyDeclaration)
     {
         contextState.Peek().PropertyList.Add(propertyDeclaration);
+    }
+
+    public static void AddContextReference(this Stack<FormattingContextState> contextState, MethodDeclarationSyntax methodDeclaration)
+    {
+        //contextState.Peek().PropertyList.Add(propertyDeclaration);
     }
 }

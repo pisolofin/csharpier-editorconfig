@@ -6,6 +6,10 @@ internal static class BaseMethodDeclaration
 {
     public static Doc Print(CSharpSyntaxNode node, FormattingContext context)
     {
+        if (node is MethodDeclarationSyntax)
+        {
+            context.State.AddContextReference((MethodDeclarationSyntax)node);
+        }
         // TODO: Fabio: Add state context
         context.State.AddContextState();
 

@@ -9,8 +9,8 @@
     public void UpdateValue()
     {
         FieldValue = 2;
-        FieldValue = 21;
-        FieldValue++;
+        this.FieldValue = 21;
+        this.FieldValue++;
 
         PropertyValue = 3;
         this.PropertyValue = 32;
@@ -26,10 +26,10 @@
         localVarB = 5;
         localVarB++;
 
-        PublicMethod();
+        this.PublicMethod();
         this.PublicMethod();
 
-        privateMethod();
+        this.privateMethod();
         this.privateMethod();
     }
 

@@ -25,5 +25,21 @@
         int localVarB;
         localVarB = 5;
         localVarB++;
+
+        PublicMethod();
+        this.PublicMethod();
+
+        privateMethod();
+        this.privateMethod();
+    }
+
+    public void PublicMethod()
+    {
+        // Do nothing
+    }
+
+    private void privateMethod()
+    {
+        // Do nothing
     }
 }
