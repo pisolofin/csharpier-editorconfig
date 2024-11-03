@@ -10,6 +10,10 @@ internal static class BaseMethodDeclaration
         {
             context.State.AddContextReference((MethodDeclarationSyntax)node);
         }
+        if (context.State.IsInScanOnly())
+        {
+            return Doc.Null;
+        }
         // TODO: Fabio: Add state context
         context.State.AddContextState();
 

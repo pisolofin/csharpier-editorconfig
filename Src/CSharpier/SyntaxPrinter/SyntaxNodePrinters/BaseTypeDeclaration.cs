@@ -6,6 +6,16 @@ internal static class BaseTypeDeclaration
     {
         // TODO: Fabio: Add state context
         context.State.AddContextState();
+        context.State.ScanOnlyEnter();
+
+        foreach (SyntaxNode syntaxChildNode in node.ChildNodes())
+        {
+            Node.Print(syntaxChildNode, context);
+        }
+
+        context.State.ScanOnlyExit();
+
+
 
         ParameterListSyntax? parameterList = null;
         TypeParameterListSyntax? typeParameterList = null;

@@ -61,7 +61,10 @@ internal class FormattingContextState
 {
     public FormattingContextState? Parent { get; set; } = null;
 
-    public List<VariableDeclaratorSyntax> FieldList = new List<VariableDeclaratorSyntax>();
-    public List<MemberDeclarationSyntax> PropertyList = new List<MemberDeclarationSyntax>();
-    public List<VariableDeclaratorSyntax> EventList = new List<VariableDeclaratorSyntax>();
+    public bool IsScanOnly { get; set; } = false;
+
+    public HashSet<VariableDeclaratorSyntax> FieldList = new HashSet<VariableDeclaratorSyntax>();
+    public HashSet<MemberDeclarationSyntax> PropertyList = new HashSet<MemberDeclarationSyntax>();
+    public HashSet<MethodDeclarationSyntax> MethodList = new HashSet<MethodDeclarationSyntax>();
+    public HashSet<VariableDeclaratorSyntax> EventList = new HashSet<VariableDeclaratorSyntax>();
 }

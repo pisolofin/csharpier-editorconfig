@@ -27,6 +27,28 @@ internal static class PrintingContextExtensions
         return currentState;
     }
 
+    /// <summary>Enter in ScanOnly modality. In this modality scan only scoped declarations.</summary>
+    public static FormattingContextState ScanOnlyEnter(this Stack<FormattingContextState> contextState)
+    {
+        var formattingContextState = contextState.Peek();
+        formattingContextState.IsScanOnly = true;
+        return formattingContextState;
+    }
+
+    /// <summary>Exit from ScanOnly modality. If this modality is false, check code and use pre scanning.</summary>
+    public static FormattingContextState ScanOnlyExit(this Stack<FormattingContextState> contextState)
+    {
+        var formattingContextState = contextState.Peek();
+        formattingContextState.IsScanOnly = false;
+        return formattingContextState;
+    }
+
+    /// <summary>Returns if ScanOnly modality is active</summary>
+    public static bool IsInScanOnly(this Stack<FormattingContextState> contextState)
+    {
+        return contextState.Peek().IsScanOnly;
+    }
+
     public static ContextReferenceLevel LocalContextReferenceLevel(this Stack<FormattingContextState> contextState, IdentifierNameSyntax identifier)
     {
         // Convert to Array to check every State
@@ -82,6 +104,6 @@ internal static class PrintingContextExtensions
 
     public static void AddContextReference(this Stack<FormattingContextState> contextState, MethodDeclarationSyntax methodDeclaration)
     {
-        //contextState.Peek().PropertyList.Add(propertyDeclaration);
+        contextState.Peek().MethodList.Add(methodDeclaration);
     }
 }
