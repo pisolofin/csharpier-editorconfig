@@ -1,12 +1,24 @@
 using CSharpier.Utilities;
+using System.Xml.Linq;
 
 namespace CSharpier.SyntaxPrinter.SyntaxNodePrinters;
 
 internal static class IdentifierName
 {
+    private static bool IsIdentifierUse(IdentifierNameSyntax node)
+    {
+        return node.Parent is AssignmentExpressionSyntax or ConditionalAccessExpressionSyntax or MemberAccessExpressionSyntax;
+    }
+
+    private static bool IsIdentifierWithThis(IdentifierNameSyntax node)
+    {
+        return ((node.Parent as ConditionalAccessExpressionSyntax)?.Expression is ThisExpressionSyntax) ||
+            ((node.Parent as MemberAccessExpressionSyntax)?.Expression is ThisExpressionSyntax);
+    }
+
     public static Doc Print(IdentifierNameSyntax node, FormattingContext context)
     {
-        if (node.Parent is AssignmentExpressionSyntax or ConditionalAccessExpressionSyntax or MemberAccessExpressionSyntax)
+        if (IsIdentifierUse(node) && !IsIdentifierWithThis(node))
         {
             var contextReferenceLevel = context.State.LocalContextReferenceLevel(node);
 
