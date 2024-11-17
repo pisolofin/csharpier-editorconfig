@@ -1,3 +1,5 @@
+using CSharpier.Utilities;
+
 namespace CSharpier.SyntaxPrinter.SyntaxNodePrinters;
 
 internal record PrintedNode(CSharpSyntaxNode Node, Doc Doc);
@@ -160,14 +162,7 @@ internal static class InvocationExpression
 
             if (memberAccessExpressionSyntax.Name is IdentifierNameSyntax identifierNode)
             {
-                var contextReferenceLevel = context.State.LocalContextReferenceLevel(identifierNode);
-
-                if (
-                    (!(context.QualificationForField ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Field)) ||
-                    (!(context.QualificationForProperty ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Property)) ||
-                    (!(context.QualificationForMethod ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Method)) ||
-                    (!(context.QualificationForEvent ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Event))
-                )
+                if (context.HasToRemoveQualification(identifierNode))
                 {
                     printedNodes.Add(
                         new PrintedNode(
@@ -175,7 +170,7 @@ internal static class InvocationExpression
                             Node.Print(memberAccessExpressionSyntax.Name, context)
                         )
                     );
-
+                
                     nodePrinted = true;
                 }
             }

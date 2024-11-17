@@ -68,6 +68,10 @@ internal static class PrintingContextExtensions
             {
                 return new ContextReferenceLevel(ContextReferenceType.Event, contextIndex);
             }
+            if (currentState.MethodList.HasContextReference(identifier))
+            {
+                return new ContextReferenceLevel(ContextReferenceType.Method, contextIndex);
+            }
         }
 
         // Not found
@@ -82,6 +86,11 @@ internal static class PrintingContextExtensions
     public static bool HasContextReference(this IEnumerable<MemberDeclarationSyntax> syntaxList, IdentifierNameSyntax identifier)
     {
         return syntaxList.Any(syntax => (syntax as PropertyDeclarationSyntax)?.Identifier.Text == identifier.Identifier.Text);
+    }
+
+    public static bool HasContextReference(this IEnumerable<MethodDeclarationSyntax> syntaxList, IdentifierNameSyntax identifier)
+    {
+        return syntaxList.Any(syntax => syntax.Identifier.Text == identifier.Identifier.Text);
     }
 
     public static void AddContextReference(this Stack<FormattingContextState> contextState, BaseFieldDeclarationSyntax fieldDeclaration)

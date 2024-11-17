@@ -26,11 +26,11 @@
         localVarB = 5;
         localVarB++;
 
-        this.PublicMethod();
-        this.PublicMethod();
+        PublicMethod();
+        PublicMethod();
 
-        this.privateMethod();
-        this.privateMethod();
+        privateMethod();
+        privateMethod();
     }
 
     public void PublicMethod()
