@@ -99,6 +99,7 @@ public class FormatController : ControllerBase
             result.Code,
             result.ReorderedModifiers,
             result.ReorderedUsingsWithDisabledText,
+            result.MovedTrailingTrivia,
             sourceCodeKind,
             cancellationToken
         );

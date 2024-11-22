@@ -107,6 +107,7 @@ public class BaseTest
             normalizedCode,
             false,
             false,
+            false,
             SourceCodeKind.Regular,
             CancellationToken.None
         );
