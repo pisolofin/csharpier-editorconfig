@@ -10,10 +10,10 @@ internal static class IdentifierNameSyntaxExtensions
         var contextReferenceLevel = context.State.LocalContextReferenceLevel(identifierNode);
 
         return
-            ((context.QualificationForField ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Field)) ||
-            ((context.QualificationForProperty ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Property)) ||
-            ((context.QualificationForMethod ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Method)) ||
-            ((context.QualificationForEvent ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Event))
+            ((context.QualificationForField ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Field) && (contextReferenceLevel.Level > 0)) ||
+            ((context.QualificationForProperty ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Property) && (contextReferenceLevel.Level > 0)) ||
+            ((context.QualificationForMethod ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Method) && (contextReferenceLevel.Level > 0)) ||
+            ((context.QualificationForEvent ?? false) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Event) && (contextReferenceLevel.Level > 0))
         ;
     }
 
@@ -23,10 +23,10 @@ internal static class IdentifierNameSyntaxExtensions
         var contextReferenceLevel = context.State.LocalContextReferenceLevel(identifierNode);
 
         return
-            (!(context.QualificationForField ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Field)) ||
-            (!(context.QualificationForProperty ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Property)) ||
-            (!(context.QualificationForMethod ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Method)) ||
-            (!(context.QualificationForEvent ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Event))
+            (!(context.QualificationForField ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Field) && (contextReferenceLevel.Level > 0)) ||
+            (!(context.QualificationForProperty ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Property) && (contextReferenceLevel.Level > 0)) ||
+            (!(context.QualificationForMethod ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Method) && (contextReferenceLevel.Level > 0)) ||
+            (!(context.QualificationForEvent ?? true) && (contextReferenceLevel.ReferenceType == ContextReferenceType.Event) && (contextReferenceLevel.Level > 0))
         ;
     }
 }
