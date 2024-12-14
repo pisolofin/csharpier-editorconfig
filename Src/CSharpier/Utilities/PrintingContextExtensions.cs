@@ -20,11 +20,16 @@ internal static class PrintingContextExtensions
     {
         var currentState = new FormattingContextState
         {
-            Parent = contextState.Count == 0 ? null : contextState.Peek()
+            Parent = contextState.PeekAvailable()
         };
         contextState.Push(currentState);
 
         return currentState;
+    }
+
+    private static FormattingContextState? PeekAvailable(this Stack<FormattingContextState> contextState)
+    {
+        return contextState.Count == 0 ? null : contextState.Peek();
     }
 
     /// <summary>Enter in ScanOnly modality. In this modality scan only scoped declarations.</summary>
@@ -46,7 +51,7 @@ internal static class PrintingContextExtensions
     /// <summary>Returns if ScanOnly modality is active</summary>
     public static bool IsInScanOnly(this Stack<FormattingContextState> contextState)
     {
-        return contextState.Peek().IsScanOnly;
+        return contextState.PeekAvailable()?.IsScanOnly ?? false;
     }
 
     public static ContextReferenceLevel LocalContextReferenceLevel(this Stack<FormattingContextState> contextState, IdentifierNameSyntax identifier)
@@ -98,21 +103,21 @@ internal static class PrintingContextExtensions
         var variable = fieldDeclaration.Declaration.Variables[0];
         if (fieldDeclaration is EventFieldDeclarationSyntax)
         {
-            contextState.Peek().EventList.Add(variable);
+            contextState.PeekAvailable()?.EventList.Add(variable);
         }
         else
         {
-            contextState.Peek().FieldList.Add(variable);
+            contextState.PeekAvailable()?.FieldList.Add(variable);
         }
     }
 
     public static void AddContextReference(this Stack<FormattingContextState> contextState, BasePropertyDeclarationSyntax propertyDeclaration)
     {
-        contextState.Peek().PropertyList.Add(propertyDeclaration);
+        contextState.PeekAvailable()?.PropertyList.Add(propertyDeclaration);
     }
 
     public static void AddContextReference(this Stack<FormattingContextState> contextState, MethodDeclarationSyntax methodDeclaration)
     {
-        contextState.Peek().MethodList.Add(methodDeclaration);
+        contextState.PeekAvailable()?.MethodList.Add(methodDeclaration);
     }
 }
